@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jkq-Qc-HdV">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--今のお参りを記録-->
+        <scene sceneID="0Rf-cx-sdk">
+            <objects>
+                <viewController storyboardIdentifier="Writing" hidesBottomBarWhenPushed="YES" id="jkq-Qc-HdV" customClass="WritingViewController" customModule="kamimeguri" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vBd-id-UKC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q3K-5A-lei">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="680"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t26-aX-mPI">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="700"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Ma-QR-SZf">
+                                                <rect key="frame" x="16" y="171.5" width="343" height="160"/>
+                                                <color key="backgroundColor" red="0.41460848569062736" green="0.75730209365941936" blue="0.83984375" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="160" id="qtU-uJ-yA3"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VWP-af-gmQ">
+                                                <rect key="frame" x="16" y="171.5" width="343" height="160"/>
+                                                <color key="backgroundColor" red="0.058823529409999999" green="0.76862745099999996" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="160" id="ucp-Kf-ZpW"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                                <size key="titleShadowOffset" width="2" height="4"/>
+                                                <state key="normal" title="境内風景写真" image="add">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.29999999999999999"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="0.0" height="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="ScenceBtnTapped:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="QgE-85-N9o"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T2x-jy-vvB">
+                                                <rect key="frame" x="0.0" y="82.5" width="375" height="1"/>
+                                                <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="MUA-yw-3a0"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="東京大神宮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHz-0c-moP">
+                                                <rect key="frame" x="16" y="20" width="92" height="21.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                <color key="textColor" red="0.058823529409999999" green="0.76862745099999996" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="東京都千代田区富士見２丁目４−１" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iza-TL-sjf">
+                                                <rect key="frame" x="16" y="49.5" width="223.5" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今回のお願いは？" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3f-4m-Jwl">
+                                                <rect key="frame" x="16" y="92.5" width="139" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="xi7-xY-FFS"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <color key="textColor" red="0.54901960780000003" green="0.54901960780000003" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xTr-aa-nzL">
+                                                <rect key="frame" x="16" y="347.5" width="163" height="120"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="JFK-Rq-l4C"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ECf-Ps-jSn">
+                                                <rect key="frame" x="16" y="347.5" width="163" height="120"/>
+                                                <color key="backgroundColor" red="0.59215686270000001" green="0.70588235290000001" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="nLl-Sf-uwd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <size key="titleShadowOffset" width="2" height="4"/>
+                                                <state key="normal" title="御朱印写真" image="add">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.29999999999999999"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="0.0" height="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="SyuinBtnTapped:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="3t5-nb-I2V"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iJb-JR-ydT">
+                                                <rect key="frame" x="195" y="347.5" width="164" height="120"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="ewm-ej-YCK"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Mj-Va-I6A">
+                                                <rect key="frame" x="195" y="347.5" width="164" height="120"/>
+                                                <color key="backgroundColor" red="0.96078431369999995" green="0.65098039220000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="lrc-vU-cXy"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <size key="titleShadowOffset" width="2" height="4"/>
+                                                <state key="normal" title="おみくじ写真" image="add">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.29999999999999999"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="0.0" height="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="MikujiBtnTapped:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="czT-6f-RFO"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nd9-Nd-qt6">
+                                                <rect key="frame" x="16" y="121.5" width="348" height="36"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zur-yr-pCk">
+                                                        <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="36" id="c0w-js-GMl"/>
+                                                            <constraint firstAttribute="width" constant="36" id="vEh-ix-R0n"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="pray_business_off"/>
+                                                        <state key="selected" image="pray_business"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.29999999999999999"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="2" height="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="WishBtnTapped:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="oz3-Xi-hir"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqg-IU-dtn">
+                                                        <rect key="frame" x="52" y="0.0" width="36" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="36" id="LNI-HF-vx9"/>
+                                                            <constraint firstAttribute="height" constant="36" id="eQV-JG-W7W"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="pray_love_off"/>
+                                                        <state key="selected" image="pray_love"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="2" height="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.29999999999999999"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="WishBtnTapped:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="VcU-wV-APo"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezT-kh-Oon">
+                                                        <rect key="frame" x="104" y="0.0" width="36" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="36" id="eHi-am-0rb"/>
+                                                            <constraint firstAttribute="height" constant="36" id="iVa-TM-YBO"/>
+                                                        </constraints>
+                                                        <state key="normal" image="pray_health_off"/>
+                                                        <state key="selected" image="pray_health"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="2" height="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.29999999999999999"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="WishBtnTapped:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="TQz-AY-LIB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MES-RH-zXf">
+                                                        <rect key="frame" x="156" y="0.0" width="36" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="36" id="WLm-ai-MuM"/>
+                                                            <constraint firstAttribute="width" constant="36" id="Z08-pz-RIQ"/>
+                                                        </constraints>
+                                                        <state key="normal" image="pray_family_off"/>
+                                                        <state key="selected" image="pray_family"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="2" height="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.29999999999999999"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="WishBtnTapped:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="CGa-0D-WZZ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Glb-MO-GvI">
+                                                        <rect key="frame" x="208" y="0.0" width="36" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="36" id="Jeq-23-vUd"/>
+                                                            <constraint firstAttribute="width" constant="36" id="Sn9-y0-T0R"/>
+                                                        </constraints>
+                                                        <state key="normal" image="pray_money_off"/>
+                                                        <state key="selected" image="pray_money"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="2" height="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.29999999999999999"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="WishBtnTapped:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="zjE-7F-RwQ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6c-lj-E9r">
+                                                        <rect key="frame" x="260" y="0.0" width="36" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="36" id="39m-fd-hER"/>
+                                                            <constraint firstAttribute="width" constant="36" id="K4j-DW-1mC"/>
+                                                        </constraints>
+                                                        <state key="normal" image="pray_traffic_off"/>
+                                                        <state key="selected" image="pray_traffic"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="2" height="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.29999999999999999"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="WishBtnTapped:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="wsn-mF-U1o"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8U-Oa-rUp">
+                                                        <rect key="frame" x="312" y="0.0" width="36" height="36"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="36" id="GGU-vl-kKc"/>
+                                                            <constraint firstAttribute="width" constant="36" id="sox-f9-YuA"/>
+                                                        </constraints>
+                                                        <state key="normal" image="pray_work_off"/>
+                                                        <state key="selected" image="pray_work"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                <size key="value" width="2" height="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.29999999999999999"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="WishBtnTapped:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="8Za-kd-B8B"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="Zur-yr-pCk" firstAttribute="top" secondItem="nd9-Nd-qt6" secondAttribute="top" id="41x-Xj-Gx1"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Zur-yr-pCk" secondAttribute="bottom" id="HRe-oW-p7u"/>
+                                                    <constraint firstAttribute="trailing" secondItem="V8U-Oa-rUp" secondAttribute="trailing" id="KIw-xQ-Tt1"/>
+                                                    <constraint firstItem="ezT-kh-Oon" firstAttribute="firstBaseline" secondItem="Glb-MO-GvI" secondAttribute="firstBaseline" id="KPS-Yg-gWe"/>
+                                                    <constraint firstItem="Zur-yr-pCk" firstAttribute="leading" secondItem="nd9-Nd-qt6" secondAttribute="leading" id="PUh-3L-yeq"/>
+                                                    <constraint firstItem="V8U-Oa-rUp" firstAttribute="top" secondItem="nd9-Nd-qt6" secondAttribute="top" id="Tf5-gr-kwj"/>
+                                                    <constraint firstAttribute="height" constant="36" id="ege-XB-cHT"/>
+                                                    <constraint firstItem="ezT-kh-Oon" firstAttribute="baseline" secondItem="Glb-MO-GvI" secondAttribute="baseline" id="lio-ds-UHv"/>
+                                                    <constraint firstItem="dqg-IU-dtn" firstAttribute="leading" secondItem="Zur-yr-pCk" secondAttribute="trailing" constant="16" id="p5a-K1-rA6"/>
+                                                </constraints>
+                                            </stackView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Eai-rQ-RQQ">
+                                                <rect key="frame" x="16" y="483.5" width="343" height="111.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="112" id="F5A-Ol-kuF"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.1056105843" green="0.26411802029999998" blue="0.23673062859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderwidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UMs-rg-BxG">
+                                                <rect key="frame" x="179" y="347.5" width="16" height="120"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="120" id="H8y-ta-plJ"/>
+                                                    <constraint firstAttribute="width" constant="16" id="xpB-5f-e5h"/>
+                                                </constraints>
+                                            </view>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHX-26-TUO">
+                                                <rect key="frame" x="0.0" y="611" width="375" height="60"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isd-Ei-hJs">
+                                                        <rect key="frame" x="16" y="0.0" width="343" height="40"/>
+                                                        <color key="backgroundColor" red="0.058823529409999999" green="0.76862745099999996" blue="0.79215686269999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="L5S-xN-Csb"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                        <state key="normal" title="すぐ記録する">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="postBtn:" destination="jkq-Qc-HdV" eventType="touchUpInside" id="6pr-ne-eg8"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="isd-Ei-hJs" secondAttribute="trailing" constant="16" id="6YB-1h-hVW"/>
+                                                    <constraint firstItem="isd-Ei-hJs" firstAttribute="top" secondItem="dHX-26-TUO" secondAttribute="top" id="JCi-a4-GID"/>
+                                                    <constraint firstAttribute="height" constant="60" id="WeJ-qX-ytt"/>
+                                                    <constraint firstItem="isd-Ei-hJs" firstAttribute="leading" secondItem="dHX-26-TUO" secondAttribute="leading" constant="16" id="dAP-7J-eMK"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                        <real key="value" value="0.29999999999999999"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                        <size key="value" width="2" height="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="700" id="2C9-7r-NIH"/>
+                                            <constraint firstItem="4Mj-Va-I6A" firstAttribute="leading" secondItem="UMs-rg-BxG" secondAttribute="trailing" id="3Wf-bP-oHc"/>
+                                            <constraint firstItem="UMs-rg-BxG" firstAttribute="centerX" secondItem="t26-aX-mPI" secondAttribute="centerX" id="3y9-qR-cYs"/>
+                                            <constraint firstItem="xTr-aa-nzL" firstAttribute="top" secondItem="VWP-af-gmQ" secondAttribute="bottom" constant="16" id="4i6-d0-c6L"/>
+                                            <constraint firstItem="UMs-rg-BxG" firstAttribute="leading" secondItem="xTr-aa-nzL" secondAttribute="trailing" id="52E-PQ-zUe"/>
+                                            <constraint firstItem="iJb-JR-ydT" firstAttribute="leading" secondItem="UMs-rg-BxG" secondAttribute="trailing" id="56s-JX-3SD"/>
+                                            <constraint firstAttribute="trailing" secondItem="T2x-jy-vvB" secondAttribute="trailing" id="6lp-rD-YOv"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Ma-QR-SZf" secondAttribute="trailing" constant="16" id="8FR-eD-hyu"/>
+                                            <constraint firstItem="UMs-rg-BxG" firstAttribute="leading" secondItem="ECf-Ps-jSn" secondAttribute="trailing" id="A4p-Pi-vRX"/>
+                                            <constraint firstItem="iJb-JR-ydT" firstAttribute="leading" secondItem="UMs-rg-BxG" secondAttribute="trailing" id="Dlh-Wp-xKp"/>
+                                            <constraint firstItem="UMs-rg-BxG" firstAttribute="top" secondItem="VWP-af-gmQ" secondAttribute="bottom" constant="16" id="E77-JI-nWP"/>
+                                            <constraint firstItem="T2x-jy-vvB" firstAttribute="top" secondItem="iza-TL-sjf" secondAttribute="bottom" constant="16" id="F0F-Il-e14"/>
+                                            <constraint firstItem="iza-TL-sjf" firstAttribute="leading" secondItem="R3f-4m-Jwl" secondAttribute="leading" id="F6S-Iv-M5O"/>
+                                            <constraint firstItem="VWP-af-gmQ" firstAttribute="leading" secondItem="xTr-aa-nzL" secondAttribute="leading" id="J2U-lN-dre"/>
+                                            <constraint firstItem="ECf-Ps-jSn" firstAttribute="top" secondItem="VWP-af-gmQ" secondAttribute="bottom" constant="16" id="JxS-kW-S2m"/>
+                                            <constraint firstItem="VWP-af-gmQ" firstAttribute="leading" secondItem="t26-aX-mPI" secondAttribute="leading" constant="16" id="MxP-p8-vqV"/>
+                                            <constraint firstAttribute="trailing" secondItem="VWP-af-gmQ" secondAttribute="trailing" constant="16" id="OeR-Yi-Ldm"/>
+                                            <constraint firstAttribute="trailing" secondItem="4Mj-Va-I6A" secondAttribute="trailing" constant="16" id="QCN-uU-oJk"/>
+                                            <constraint firstItem="dHX-26-TUO" firstAttribute="top" secondItem="Eai-rQ-RQQ" secondAttribute="bottom" constant="16" id="Qg6-cV-wBx"/>
+                                            <constraint firstItem="1Ma-QR-SZf" firstAttribute="top" secondItem="nd9-Nd-qt6" secondAttribute="bottom" constant="14" id="QvN-ms-iRu"/>
+                                            <constraint firstAttribute="trailing" secondItem="iJb-JR-ydT" secondAttribute="trailing" constant="16" id="Rny-wL-LRZ"/>
+                                            <constraint firstItem="1Ma-QR-SZf" firstAttribute="centerX" secondItem="t26-aX-mPI" secondAttribute="centerX" id="T2m-hK-UEO"/>
+                                            <constraint firstAttribute="trailing" secondItem="Eai-rQ-RQQ" secondAttribute="trailing" constant="16" id="W0v-Ky-MZJ"/>
+                                            <constraint firstItem="nd9-Nd-qt6" firstAttribute="top" secondItem="R3f-4m-Jwl" secondAttribute="bottom" constant="8" id="XFV-v3-qoQ"/>
+                                            <constraint firstItem="Eai-rQ-RQQ" firstAttribute="leading" secondItem="t26-aX-mPI" secondAttribute="leading" constant="16" id="XyN-2X-SYD"/>
+                                            <constraint firstItem="T2x-jy-vvB" firstAttribute="leading" secondItem="t26-aX-mPI" secondAttribute="leading" id="Ytj-VW-KiK"/>
+                                            <constraint firstItem="ECf-Ps-jSn" firstAttribute="leading" secondItem="t26-aX-mPI" secondAttribute="leading" constant="16" id="ag0-0y-LYv"/>
+                                            <constraint firstItem="1Ma-QR-SZf" firstAttribute="leading" secondItem="t26-aX-mPI" secondAttribute="leading" constant="16" id="bcE-W4-VVm"/>
+                                            <constraint firstItem="Eai-rQ-RQQ" firstAttribute="top" secondItem="xTr-aa-nzL" secondAttribute="bottom" constant="16" id="dTK-J4-0VB"/>
+                                            <constraint firstItem="VWP-af-gmQ" firstAttribute="top" secondItem="nd9-Nd-qt6" secondAttribute="bottom" constant="14" id="eKH-wE-J3H"/>
+                                            <constraint firstItem="nHz-0c-moP" firstAttribute="leading" secondItem="iza-TL-sjf" secondAttribute="leading" id="eds-GI-bGj"/>
+                                            <constraint firstItem="iza-TL-sjf" firstAttribute="top" secondItem="nHz-0c-moP" secondAttribute="bottom" constant="8" id="gIf-fC-3tp"/>
+                                            <constraint firstItem="dHX-26-TUO" firstAttribute="leading" secondItem="t26-aX-mPI" secondAttribute="leading" id="gd9-2x-nmc"/>
+                                            <constraint firstItem="R3f-4m-Jwl" firstAttribute="leading" secondItem="nd9-Nd-qt6" secondAttribute="leading" id="kob-uw-Nj6"/>
+                                            <constraint firstItem="R3f-4m-Jwl" firstAttribute="top" secondItem="T2x-jy-vvB" secondAttribute="bottom" constant="9" id="kqn-LC-dfQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="dHX-26-TUO" secondAttribute="trailing" id="lQb-BC-xPR"/>
+                                            <constraint firstItem="nHz-0c-moP" firstAttribute="leading" secondItem="t26-aX-mPI" secondAttribute="leading" constant="16" id="lXA-xf-kU8"/>
+                                            <constraint firstItem="VWP-af-gmQ" firstAttribute="leading" secondItem="nd9-Nd-qt6" secondAttribute="leading" id="mXg-RF-m7A"/>
+                                            <constraint firstItem="nHz-0c-moP" firstAttribute="top" secondItem="t26-aX-mPI" secondAttribute="top" constant="20" id="q6h-1L-8pe"/>
+                                            <constraint firstItem="iJb-JR-ydT" firstAttribute="leading" secondItem="UMs-rg-BxG" secondAttribute="trailing" id="saE-0U-BvR"/>
+                                            <constraint firstItem="UMs-rg-BxG" firstAttribute="leading" secondItem="xTr-aa-nzL" secondAttribute="trailing" id="wmZ-68-yfJ"/>
+                                            <constraint firstItem="iJb-JR-ydT" firstAttribute="top" secondItem="VWP-af-gmQ" secondAttribute="bottom" constant="16" id="wpg-4f-wmI"/>
+                                            <constraint firstItem="4Mj-Va-I6A" firstAttribute="top" secondItem="VWP-af-gmQ" secondAttribute="bottom" constant="16" id="z01-Lq-15m"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="t26-aX-mPI" secondAttribute="bottom" constant="-20" id="5zC-GU-StR"/>
+                                    <constraint firstItem="t26-aX-mPI" firstAttribute="leading" secondItem="Q3K-5A-lei" secondAttribute="leading" id="Iyb-aU-23k"/>
+                                    <constraint firstAttribute="trailing" secondItem="t26-aX-mPI" secondAttribute="trailing" id="W6E-JF-DnL"/>
+                                    <constraint firstItem="t26-aX-mPI" firstAttribute="top" secondItem="Q3K-5A-lei" secondAttribute="top" id="jSf-Yt-bpO"/>
+                                    <constraint firstItem="t26-aX-mPI" firstAttribute="centerX" secondItem="Q3K-5A-lei" secondAttribute="centerX" id="kr2-Mr-iGM"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Q3K-5A-lei" secondAttribute="trailing" id="37k-W6-EIG"/>
+                            <constraint firstAttribute="bottom" secondItem="Q3K-5A-lei" secondAttribute="bottom" constant="20" symbolic="YES" id="6kS-fQ-vQn"/>
+                            <constraint firstItem="Q3K-5A-lei" firstAttribute="top" secondItem="vBd-id-UKC" secondAttribute="top" id="fQt-nF-G2t"/>
+                            <constraint firstItem="Q3K-5A-lei" firstAttribute="leading" secondItem="vBd-id-UKC" secondAttribute="leading" id="hwT-Rb-63b"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="35z-BM-QpB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="今のお参りを記録" id="gOh-4U-W6S">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="L58-Df-ejn"/>
+                    </navigationItem>
+                    <size key="freeformSize" width="375" height="700"/>
+                    <connections>
+                        <outlet property="ContentView" destination="t26-aX-mPI" id="BJP-db-1Dl"/>
+                        <outlet property="DiaryText" destination="Eai-rQ-RQQ" id="ZYY-g6-RrF"/>
+                        <outlet property="KujiBtn" destination="4Mj-Va-I6A" id="T2h-pl-TeH"/>
+                        <outlet property="KujiImage" destination="iJb-JR-ydT" id="f4F-iQ-ucE"/>
+                        <outlet property="ScenceBtn" destination="VWP-af-gmQ" id="DWG-xI-Y4R"/>
+                        <outlet property="ScenceImg" destination="1Ma-QR-SZf" id="uAs-mT-K2Q"/>
+                        <outlet property="SyuinBtn" destination="ECf-Ps-jSn" id="MPg-Sg-dyX"/>
+                        <outlet property="SyuinImage" destination="xTr-aa-nzL" id="qv9-SX-T8W"/>
+                        <outlet property="TempleAddress" destination="iza-TL-sjf" id="PE2-xl-eaH"/>
+                        <outlet property="TempleName" destination="nHz-0c-moP" id="XHw-j9-EUB"/>
+                        <outlet property="WritingScroll" destination="Q3K-5A-lei" id="baX-dr-1Ri"/>
+                        <outletCollection property="WishButton" destination="dqg-IU-dtn" collectionClass="NSMutableArray" id="hUm-oo-jvP"/>
+                        <outletCollection property="WishButton" destination="ezT-kh-Oon" collectionClass="NSMutableArray" id="LqZ-zT-v0f"/>
+                        <outletCollection property="WishButton" destination="MES-RH-zXf" collectionClass="NSMutableArray" id="Yzf-rh-6Wt"/>
+                        <outletCollection property="WishButton" destination="Glb-MO-GvI" collectionClass="NSMutableArray" id="eP9-jq-tKS"/>
+                        <outletCollection property="WishButton" destination="X6c-lj-E9r" collectionClass="NSMutableArray" id="dgC-Wx-tJn"/>
+                        <outletCollection property="WishButton" destination="V8U-Oa-rUp" collectionClass="NSMutableArray" id="SX6-xS-Gbk"/>
+                        <outletCollection property="WishButton" destination="Zur-yr-pCk" collectionClass="NSMutableArray" id="jd7-a1-VWv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YGl-DM-s1q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5930.3999999999996" y="118.74062968515743"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="add" width="44" height="44"/>
+        <image name="pray_business" width="36" height="36"/>
+        <image name="pray_business_off" width="36" height="36"/>
+        <image name="pray_family" width="36" height="36"/>
+        <image name="pray_family_off" width="36" height="36"/>
+        <image name="pray_health" width="37" height="35"/>
+        <image name="pray_health_off" width="37" height="35"/>
+        <image name="pray_love" width="36" height="36"/>
+        <image name="pray_love_off" width="36" height="36"/>
+        <image name="pray_money" width="31" height="35"/>
+        <image name="pray_money_off" width="31" height="35"/>
+        <image name="pray_traffic" width="36" height="36"/>
+        <image name="pray_traffic_off" width="36" height="36"/>
+        <image name="pray_work" width="35" height="33"/>
+        <image name="pray_work_off" width="35" height="33"/>
+    </resources>
+</document>

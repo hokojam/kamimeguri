@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="26v-zn-krA">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MapView-->
+        <scene sceneID="sk9-Z2-GOR">
+            <objects>
+                <viewController id="TpM-dE-jCw" userLabel="MapView" customClass="MapViewController" customModule="kamimeguri" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fC7-Hv-Jyx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SwZ-9l-gvB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="626"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QAp-bE-CVY">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="101"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="101" id="4DQ-aa-3b3"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNk-jJ-Krp">
+                                        <rect key="frame" x="-8" y="100" width="200" height="72"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="November.23" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lY2-of-S03">
+                                                <rect key="frame" x="24" y="8" width="168" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
+                                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SatudayWeekday" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFP-C4-uKK">
+                                                <rect key="frame" x="24" y="44" width="170" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="7mm-b3-m6t"/>
+                                            <constraint firstAttribute="height" constant="72" id="v7a-bE-xXP"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.29999999999999999"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="2" height="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLX-0W-7P9">
+                                        <rect key="frame" x="313" y="483" width="54" height="54"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="writting"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="2" height="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="WritingBtnTapped:" destination="TpM-dE-jCw" eventType="touchUpInside" id="oD5-yf-KrE"/>
+                                            <segue destination="p0D-rQ-aCX" kind="show" id="dJO-tW-I3j"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="QAp-bE-CVY" secondAttribute="trailing" id="2bs-11-NjP"/>
+                                    <constraint firstItem="QAp-bE-CVY" firstAttribute="top" secondItem="SwZ-9l-gvB" secondAttribute="top" id="B2i-Ac-nHY"/>
+                                    <constraint firstItem="GNk-jJ-Krp" firstAttribute="leading" secondItem="SwZ-9l-gvB" secondAttribute="leading" constant="-8" id="IXH-NH-lg7"/>
+                                    <constraint firstItem="GNk-jJ-Krp" firstAttribute="top" secondItem="QAp-bE-CVY" secondAttribute="bottom" constant="-1" id="MLD-tC-71e"/>
+                                    <constraint firstItem="QAp-bE-CVY" firstAttribute="leading" secondItem="SwZ-9l-gvB" secondAttribute="leading" id="isv-Hf-Qtc"/>
+                                    <constraint firstAttribute="height" constant="626" id="yIW-46-gA4"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.53683810759999995" green="0.95332589410000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="SwZ-9l-gvB" firstAttribute="trailing" secondItem="R5q-IW-UXb" secondAttribute="trailing" id="XRg-nj-6Ay"/>
+                            <constraint firstItem="SwZ-9l-gvB" firstAttribute="leading" secondItem="R5q-IW-UXb" secondAttribute="leading" id="aS2-ys-XnZ"/>
+                            <constraint firstItem="SwZ-9l-gvB" firstAttribute="top" secondItem="R5q-IW-UXb" secondAttribute="top" id="gLL-BC-RH9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="R5q-IW-UXb"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="めぐりナウ" id="dMg-sH-665"/>
+                    <connections>
+                        <outlet property="InfoLabel" destination="GNk-jJ-Krp" id="tX3-cE-rG5"/>
+                        <outlet property="WritingBtn" destination="PLX-0W-7P9" id="Pmv-Xr-GO0"/>
+                        <outlet property="dateLabel" destination="lY2-of-S03" id="NpN-VR-cNH"/>
+                        <outlet property="infoView" destination="SwZ-9l-gvB" id="ZVj-SJ-gMs"/>
+                        <outlet property="weekdayLabel" destination="qFP-C4-uKK" id="6D2-oh-cH2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eYe-JN-Mld" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1689" y="1621"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="I6D-YB-Zjf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="26v-zn-krA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="" image="location" id="9Yu-yx-gry">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ptj-OC-msv">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TpM-dE-jCw" kind="relationship" relationship="rootViewController" id="Pqm-Jl-ET6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hI5-Jg-DY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="839" y="1621"/>
+        </scene>
+        <!--Writing-->
+        <scene sceneID="mWT-KP-hyK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Writing" id="p0D-rQ-aCX" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ym-Cs-0Tb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2306" y="1620"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="location" width="64" height="64"/>
+        <image name="writting" width="54" height="54"/>
+    </resources>
+</document>
