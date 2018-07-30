@@ -139,10 +139,10 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Writing" {
             let WritingViewController = segue.destination as! WritingViewController
-            let postDateInfo = DateFormatter()
-            postDateInfo.setTemplate(.fullDate)
-            let postDate: String = "\(postDateInfo.string(from: Date()))"
-              WritingViewController.postDate = postDate
+            let postDateInfoFormatter = DateFormatter()
+            postDateInfoFormatter.setTemplate(.fullDate)
+            let postDate: String = "\(postDateInfoFormatter.string(from: Date()))"
+              WritingViewController.nowpostDate = postDate
 //              WritingViewController.TempleName.text = "" APIから取る
 //              WritingViewController.TempleAddress.text = APIから取る
             

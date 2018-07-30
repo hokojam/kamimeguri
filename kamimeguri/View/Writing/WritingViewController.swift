@@ -14,16 +14,15 @@ class WritingViewController: UIViewController, UITextViewDelegate
 {
     
     //databaseのための追加
-    //let realm = try! Realm()
     
-    var diaryArray = [Diary]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let realm = try! Realm()
+    //private var dataArray: [LogData] = []
+    var diaryArray: Results<Diary>!//!がないと、Class 'WritingViewController' has no initializers
+    //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    
+    var nowpostDate : String = ""
 
-    var postDate : String = ""
-    
-    
-    
     @IBOutlet weak var TempleName: UILabel!
     
     @IBOutlet weak var TempleAddress: UILabel!
@@ -80,6 +79,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
         // 改行コードは入力しない
         return false
     }
+
     
     
     override func viewDidLoad() {
@@ -101,7 +101,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
         // キーボードが退場した
         notification.addObserver(self,
                                  selector: #selector(WritingViewController.keyboardDidChange(notification:)),//なんでnotification: を追加しの？？？
-                                 name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+            name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     
@@ -124,7 +124,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
     
     
     func hideKeyboard(){
-    DiaryText.resignFirstResponder()
+        DiaryText.resignFirstResponder()
     }
     
     
@@ -144,7 +144,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
     @IBAction func MikujiBtnTapped(_ sender: UIButton) {
         CameraHandler.shared.showActionSheet(vc: self)
         CameraHandler.shared.imagePickedBlock = { (image) in //これどうなるの
-           self.KujiImage.image = image
+            self.KujiImage.image = image
             self.KujiBtn.isHidden = true
         }
     }
@@ -154,53 +154,51 @@ class WritingViewController: UIViewController, UITextViewDelegate
     @IBAction func postBtn(_ sender: UIButton) {
         // キーボードを閉じる
         DiaryText.endEditing(true)
-       
-       let realm = try! Realm()
-       print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
+        
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         //ファイルパスを表示させる。
-        let diary = Diary()
-        diary.DiaryText = DiaryText.text!
-        diary.date = postDate
+        let newDiary = Diary()
+        newDiary.DiaryText = DiaryText.text!
+
         
         let postDateFormatter =  DateFormatter()
         postDateFormatter.setTemplate(.fullDate)
-        let dateInfo = postDateFormatter.date(from: postDate)
-        diary.dateInfo = dateInfo!
-//        diary.scencePhoto = self.ScenceImg.image
-//        diary.kujiPhoto = self.SyuinImage.image
-//        diary.syuinPhoto = self.KujiImage.image
+        newDiary.postTempleName = TempleName.text!
+        newDiary.postTempleAddress = TempleAddress.text!
+       // diary.dateInfo = postDateFormatter.date(from: nowpostDate)
+        self.saveItems(diary: newDiary)
+        
+        //        diary.scencePhoto = self.ScenceImg.image
+        //        diary.kujiPhoto = self.SyuinImage.image
+        //        diary.syuinPhoto = self.KujiImage.image
+        //             let realm = try! realm.write {
+        //             diary.realm?.add(diary, update: true)}
+        //
+        
+        self.dismiss(animated: true, completion: nil)
+        LogViewController().PostList.reloadData()
+    }
+    
+    
+    func saveItems(diary: Diary){
         do{
-            _ = try! realm.write {
-                    diary.realm?.add(diary, update: true)}
+            try realm.write{
+                realm.add(diary, update: true)
+            }
         }
         catch{
             let alert = UIAlertController(title:"Add New TO DO item",message:"",
                                           preferredStyle: .alert)
-            //alert.show(alert, sender: <#Any?#>)
+            //alert.addAction(action)
             present(alert, animated: true, completion:nil)
-        }
-        self.dismiss(animated: true, completion: nil)
-        }
-
-        func saveItems(){
-            do{
-              try context.save()
-            }
-            catch{
-                print("save error")
-            }
-        }
+           }
+        //
+       }
     
-//        func loadItems(){
-//            if let data = try? [Data(contentsOf: dataFilePath)]{
-//                let decoder = PropertyListDecoder()
-//                do{
-//                    diaryArray = try decoder.decode([Diary].self, from: data)
-//                }
-//                catch {
-//                    print("Erroor decoding item array, \(error)")
-//                }
-//            }
-//        }
-
-    }
+    func loadItems(){
+     diaryArray = realm.objects(Diary.self)
+        //Cannot assign value of type 'Results<Diary>' to type '[Diary]'
+     LogViewController().PostList.reloadData()
+   }
+}

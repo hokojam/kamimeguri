@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import RealmSwift
 
 class LogViewController:  UIViewController {
-      //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    //UIApplicatio.shared
+    let realm = try! Realm()
+    var diaryArray: Results<Diary>?
     private var dataArray: [LogData] = []
     
     // カメラかlibraryで撮るものを保存、取得
-    @IBOutlet private weak var WrittingBtn: UIButton!
-    @IBOutlet private weak var PostList: UITableView!
+    @IBOutlet weak var WrittingBtn: UIButton!
+    @IBOutlet weak var PostList: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,33 +26,42 @@ class LogViewController:  UIViewController {
     
     func createData() {
         let diary = Diary()
-        for _ in 0..<10 {
+        let diaryObjects = realm.objects(Diary.self)
+        for diaryObject in diaryObjects{
             let logData = LogData() //logdataに関する定義は別のファイルで
             logData.photo1 = UIImage(named: "img_scence")
             logData.photo2 = UIImage(named: "img_kuji")
             logData.photo3 = UIImage(named: "img_syuin")
             
+//            let postDateFormatter =  DateFormatter()
+//            postDateFormatter.setTemplate(.fullDate)
+//            let logDataDateInfo = postDateFormatter.date(from: WritingViewController().postDate)
+            
             let yearInfo = DateFormatter()
             yearInfo.setTemplate(.Year)
-            logData.postYear = yearInfo.string(from:diary.dateInfo)
+            logData.postYear = yearInfo.string(from: diary.dateInfo)
             //formatter.stringFromDate(time)
+            
             let MDINfo = DateFormatter()
             MDINfo.setTemplate(.MDDate)
-            logData.postDate = "\(MDINfo.string(from: diary.dateInfo))"
+            logData.postDate = MDINfo.string(from: diary.dateInfo)
             
             let weekdayInfo = DateFormatter()
             weekdayInfo.setTemplate(.weekDay)
-            logData.postWeekly = "\(weekdayInfo.string(from: diary.dateInfo))"
+            logData.postWeekly = weekdayInfo.string(from:diary.dateInfo)
             
-            logData.postTempleName = "東京大神宮"
-            logData.postTempleAddress = "東京都千代田区富士見２丁目４−１"
+            logData.postTempleName = diary.postTempleName
+            logData.postTempleAddress = diary.postTempleName
+            
+            logData.postedText = diary.DiaryText!
             dataArray.insert(logData, at:0)
+            
+            try! realm.write {
+                realm.add(diaryObject, update: true)
+                //return logData.count
+            }
         }
-        
-//        let realm
-//        try! realm.write {
-//            realm.add(dataArray, update: true)
-//        }
+       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,7 +75,7 @@ class LogViewController:  UIViewController {
 extension LogViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
+        return diaryArray?.count ?? 1 //if nil return 1 : nil Coalescing Operator! important to make the app safer coz it wont crash eventhough nil
     }
     
     //cell表示

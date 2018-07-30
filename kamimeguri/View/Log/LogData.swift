@@ -8,9 +8,12 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class LogData {
+    let realm = try! Realm()
     
+    var id: Int?
     var photo1: UIImage?
     var photo2: UIImage?
     var photo3: UIImage?
@@ -19,6 +22,7 @@ class LogData {
     var postDate: String = ""
     var postWeekly: String = ""
     
+    var postedText: String = ""
     var postTempleName: String = ""
     var postTempleAddress: String = ""
     
@@ -29,4 +33,5 @@ class LogData {
     var dateString: String {
         return postYear + postDate
     }
+    
 }
