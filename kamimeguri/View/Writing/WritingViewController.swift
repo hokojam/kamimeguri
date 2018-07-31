@@ -178,7 +178,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
     
     
     func saveItems(diary: Diary){
-        var latestId = 0 
+        var latestId = 0
         do{
             try realm.write{
                 if (false == realm.isEmpty) {
