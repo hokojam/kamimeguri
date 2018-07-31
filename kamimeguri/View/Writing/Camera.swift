@@ -57,6 +57,7 @@ class CameraHandler: NSObject{
 }
 
 extension CameraHandler: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    //var imageData:Data? = nil
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         currentVC.dismiss(animated: true, completion: nil)
     }
@@ -69,3 +70,15 @@ extension CameraHandler: UIImagePickerControllerDelegate,UINavigationControllerD
         currentVC.dismiss(animated:true, completion:nil)
      }
 }
+
+//
+//
+//func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//    let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+//    imageBox.image = chosenImage
+//
+//    imageData = diaryRepository.getImageData(info: info) // 1-1 사용
+//
+//    picker.dismiss(animated: true, completion: nil)
+//
+//}

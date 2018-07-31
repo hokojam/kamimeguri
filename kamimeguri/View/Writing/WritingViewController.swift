@@ -154,36 +154,41 @@ class WritingViewController: UIViewController, UITextViewDelegate
     @IBAction func postBtn(_ sender: UIButton) {
         // キーボードを閉じる
         DiaryText.endEditing(true)
-        
-        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-        //ファイルパスを表示させる。
         let newDiary = Diary()
-        newDiary.DiaryText = DiaryText.text!
-
-        
+        self.saveItems(diary: newDiary)
+        // 内容を反映する
+        newDiary.DiaryText = DiaryText.text
+      
         let postDateFormatter =  DateFormatter()
         postDateFormatter.setTemplate(.fullDate)
         newDiary.postTempleName = TempleName.text!
         newDiary.postTempleAddress = TempleAddress.text!
-       // diary.dateInfo = postDateFormatter.date(from: nowpostDate)
-        self.saveItems(diary: newDiary)
+        newDiary.date = nowpostDate
         
-        //        diary.scencePhoto = self.ScenceImg.image
-        //        diary.kujiPhoto = self.SyuinImage.image
-        //        diary.syuinPhoto = self.KujiImage.image
+        
+//                newDiary.scencePhoto = self.ScenceImg.image
+//                newDiary.kujiPhoto = self.SyuinImage.image
+//                newDiary.syuinPhoto = self.KujiImage.image
         //             let realm = try! realm.write {
         //             diary.realm?.add(diary, update: true)}
-        //
-        
         self.dismiss(animated: true, completion: nil)
-        LogViewController().PostList.reloadData()
+        //LogViewController().PostList.reloadData()
     }
     
     
     func saveItems(diary: Diary){
+        var latestId = 0 
         do{
             try realm.write{
+                if (false == realm.isEmpty) {
+                    latestId = (realm.objects(Diary.self).max(ofProperty: "id") as Int?)!//.max(ofProperty: "id")がわかりません
+                    latestId += 1
+                    diary.id = latestId
+                }
+//                if (nil != imageData) {
+//                    diary.imageName = imageManager.saveImage(data: imageData!, id: diary.id)
+//                } 画像問題。
                 realm.add(diary, update: true)
             }
         }
