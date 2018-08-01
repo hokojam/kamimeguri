@@ -130,6 +130,31 @@
                                             <outlet property="postImage" destination="d02-gc-xaE" id="qde-aF-VwB"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostDetailTextCell" id="v4M-j1-5Td" userLabel="PostDetailTextCell" customClass="PostDetailTextCell" customModule="kamimeguri" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="385" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v4M-j1-5Td" id="VxW-Yc-akN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8S-y6-J2Z">
+                                                    <rect key="frame" x="16" y="12" width="343" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="F8S-y6-J2Z" secondAttribute="trailing" constant="16" id="ALR-YR-Z7r"/>
+                                                <constraint firstItem="F8S-y6-J2Z" firstAttribute="leading" secondItem="VxW-Yc-akN" secondAttribute="leading" constant="16" id="pqZ-cG-2Ac"/>
+                                                <constraint firstItem="F8S-y6-J2Z" firstAttribute="top" secondItem="VxW-Yc-akN" secondAttribute="top" constant="12" id="yTD-by-hJD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" identifier="PostDetialTextCell"/>
+                                        <connections>
+                                            <outlet property="PostTextContent" destination="F8S-y6-J2Z" id="A0g-Az-fIn"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Tj3-Q0-haT" id="PUe-ON-ZSh"/>

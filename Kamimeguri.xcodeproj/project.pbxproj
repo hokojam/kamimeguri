@@ -30,6 +30,7 @@
 		4F9C01B3210456C800088212 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9C01B2210456C800088212 /* PostCell.swift */; };
 		4F9E1C8C20FC3B6B006047C1 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E1C8B20FC3B6B006047C1 /* WritingViewController.swift */; };
 		4F9E1C8E20FCB3AF006047C1 /* WishListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E1C8D20FCB3AF006047C1 /* WishListCell.swift */; };
+		4FB218B9211177AE0093AB91 /* PostDetailTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB218B8211177AE0093AB91 /* PostDetailTextCell.swift */; };
 		4FD0063B20EFE0FC00AF7DED /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD0063A20EFE0FC00AF7DED /* DataManager.swift */; };
 		4FDBAEA620EF402700926817 /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FDBAEA520EF402700926817 /* Diary.swift */; };
 		4FF007BA20E100C800B7C922 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF007B920E100C800B7C922 /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 		4F9C01B2210456C800088212 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		4F9E1C8B20FC3B6B006047C1 /* WritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
 		4F9E1C8D20FCB3AF006047C1 /* WishListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishListCell.swift; sourceTree = "<group>"; };
+		4FB218B8211177AE0093AB91 /* PostDetailTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTextCell.swift; sourceTree = "<group>"; };
 		4FD0063A20EFE0FC00AF7DED /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		4FDBAEA520EF402700926817 /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		4FF007B620E100C800B7C922 /* kamimeguri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kamimeguri.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				36B7C6E12106192C004C4B28 /* PostDetailTitleCell.swift */,
+				4FB218B8211177AE0093AB91 /* PostDetailTextCell.swift */,
 				36B7C6E32106193E004C4B28 /* PostDetailImageCell.swift */,
 			);
 			path = Cell;
@@ -433,6 +436,7 @@
 				36B7C6E42106193E004C4B28 /* PostDetailImageCell.swift in Sources */,
 				36DB052721062CAF00C44FD8 /* Bundle+.swift in Sources */,
 				4FF007BA20E100C800B7C922 /* AppDelegate.swift in Sources */,
+				4FB218B9211177AE0093AB91 /* PostDetailTextCell.swift in Sources */,
 				4F787E2F20EE33010068B061 /* Camera.swift in Sources */,
 				4F9E1C8E20FCB3AF006047C1 /* WishListCell.swift in Sources */,
 				4F2998F520EA4E8C00A4E157 /* TabBarController.swift in Sources */,

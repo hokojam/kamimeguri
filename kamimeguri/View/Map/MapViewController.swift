@@ -121,8 +121,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         marker.title = "東京大神宮"//APIで取得
         marker.snippet = "東京都千代田区富士見２丁目４−１"
         //marker.appearAnimation = kGMSMarkerAnimationPop
-        marker.icon = UIImage(named: "mapMarker_shrine")// GMSMarker.markerImage(with: UIColor.green)
-        //locationMarker.opacity = 0.85
+        marker.icon = UIImage(named: "mapMarker_shrine")//
         marker.isFlat = true
         marker.map = myMapView
         myMapView.selectedMarker = marker
@@ -142,7 +141,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
             let postDateInfoFormatter = DateFormatter()
             postDateInfoFormatter.setTemplate(.fullDate)
             let postDate: String = "\(postDateInfoFormatter.string(from: Date()))"
-              WritingViewController.nowpostDate = postDate
+            WritingViewController.nowpostDate.text = postDate
 //              WritingViewController.TempleName.text = "" APIから取る
 //              WritingViewController.TempleAddress.text = APIから取る
             

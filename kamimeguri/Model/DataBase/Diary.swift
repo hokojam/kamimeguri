@@ -14,7 +14,7 @@ class Diary: Object{
     @objc dynamic var postTempleName : String = ""
     @objc dynamic var postTempleAddress : String = ""
     @objc dynamic var date : String = ""
-    @objc dynamic var dateInfo = Date()
+    @objc dynamic var dateInfo = NSDate()
     @objc dynamic var DiaryText : String? = ""
     @objc dynamic var omairiIcon : Data? = nil
     @objc dynamic var scencePhoto : Data? = nil

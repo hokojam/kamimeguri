@@ -18,7 +18,6 @@ class PostDetailTitleCell: UITableViewCell {
         didSet {
             if let logData = logData { //もしlogDateはnilじゃなかったら
                 dateLabel.text = logData.dateString
-                 
                 titleLabel.text = logData.postTempleName
                 addressLabel.text = logData.postTempleAddress
             }

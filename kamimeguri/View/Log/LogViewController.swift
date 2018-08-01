@@ -35,20 +35,20 @@ class LogViewController:  UIViewController {
             
 //            let postDateFormatter =  DateFormatter()
 //            postDateFormatter.setTemplate(.fullDate)
-//            let logDataDateInfo = postDateFormatter.date(from: WritingViewController().postDate)
+//           logDataDateInfo = postDateFormatter.date(from: WritingViewController().postDate)
             
             let yearInfo = DateFormatter()
             yearInfo.setTemplate(.Year)
-            logData.postYear = yearInfo.string(from: diary.dateInfo)
+            logData.postYear = yearInfo.string(from: diary.dateInfo as Date)
             //formatter.stringFromDate(time)
             
             let MDINfo = DateFormatter()
             MDINfo.setTemplate(.MDDate)
-            logData.postDate = MDINfo.string(from: diary.dateInfo)
+            logData.postDate = MDINfo.string(from: diary.dateInfo as Date)
             
             let weekdayInfo = DateFormatter()
             weekdayInfo.setTemplate(.weekDay)
-            logData.postWeekly = weekdayInfo.string(from:diary.dateInfo)
+            logData.postWeekly = weekdayInfo.string(from:diary.dateInfo as Date)
             
             logData.postTempleName = diary.postTempleName
             logData.postTempleAddress = diary.postTempleName

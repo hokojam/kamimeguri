@@ -21,7 +21,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
     //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
-    var nowpostDate : String = ""
+    var nowpostDate = UILabel()
 
     @IBOutlet weak var TempleName: UILabel!
     
@@ -154,17 +154,23 @@ class WritingViewController: UIViewController, UITextViewDelegate
     @IBAction func postBtn(_ sender: UIButton) {
         // キーボードを閉じる
         DiaryText.endEditing(true)
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
+      
         let newDiary = Diary()
-        self.saveItems(diary: newDiary)
+
         // 内容を反映する
         newDiary.DiaryText = DiaryText.text
       
-        let postDateFormatter =  DateFormatter()
-        postDateFormatter.setTemplate(.fullDate)
+       
         newDiary.postTempleName = TempleName.text!
         newDiary.postTempleAddress = TempleAddress.text!
-        newDiary.date = nowpostDate
+         //newDiary.date = nowpostDate.text!
+        let postDateFormatter =  DateFormatter()
+        postDateFormatter.setTemplate(.fullDate)
+        let postDate: String = "\(postDateFormatter.string(from: Date()))"
+        nowpostDate.text = postDate
+        newDiary.date = nowpostDate.text!
+        newDiary.dateInfo = postDateFormatter.date(from: nowpostDate.text!)! as NSDate
+        
         
         
 //                newDiary.scencePhoto = self.ScenceImg.image
@@ -172,15 +178,18 @@ class WritingViewController: UIViewController, UITextViewDelegate
 //                newDiary.syuinPhoto = self.KujiImage.image
         //             let realm = try! realm.write {
         //             diary.realm?.add(diary, update: true)}
+        self.saveItems(diary: newDiary)
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         self.dismiss(animated: true, completion: nil)
         //LogViewController().PostList.reloadData()
     }
     
     
     func saveItems(diary: Diary){
-        var latestId = 0
+        
         do{
             try realm.write{
+                var latestId = 0
                 if (false == realm.isEmpty) {
                     latestId = (realm.objects(Diary.self).max(ofProperty: "id") as Int?)!//.max(ofProperty: "id")がわかりません
                     latestId += 1

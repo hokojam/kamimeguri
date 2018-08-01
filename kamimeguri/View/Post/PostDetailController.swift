@@ -17,9 +17,10 @@ class PostDetailController: UIViewController {
     enum SectionType: Int {
         case title
         case image
+        case text
         
         static var count: Int {
-            let type: [SectionType] = [.title, .image]
+            let type: [SectionType] = [.title, .image, .text]
             return type.count
         }
     }
@@ -38,12 +39,13 @@ extension PostDetailController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return SectionType.count
     }
-    
+    //PostDetailTextCell
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sectionType = SectionType(rawValue: section) else { return 0 }
         switch sectionType {
         case .title: return 1
         case .image: return imageTitle.count
+        case .text: return 1
         }
     }
     
@@ -61,6 +63,12 @@ extension PostDetailController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailImageCell", for: indexPath) as? PostDetailImageCell {
                 cell.imageTitle.text = imageTitle[indexPath.row]
                 cell.postImage.image = logData?.images[indexPath.row]
+                return cell
+            }
+            
+        case .text:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailTextCell", for: indexPath) as? PostDetailTextCell {
+                cell.PostTextContent.text = logData?.postedText
                 return cell
             }
         }
