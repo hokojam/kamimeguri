@@ -33,9 +33,6 @@ class LogViewController:  UIViewController {
             logData.photo2 = UIImage(named: "img_kuji")
             logData.photo3 = UIImage(named: "img_syuin")
             
-//            let postDateFormatter =  DateFormatter()
-//            postDateFormatter.setTemplate(.fullDate)
-//           logDataDateInfo = postDateFormatter.date(from: WritingViewController().postDate)
             
             let yearInfo = DateFormatter()
             yearInfo.setTemplate(.Year)

@@ -130,24 +130,25 @@
                                             <outlet property="postImage" destination="d02-gc-xaE" id="qde-aF-VwB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostDetailTextCell" id="v4M-j1-5Td" userLabel="PostDetailTextCell" customClass="PostDetailTextCell" customModule="kamimeguri" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="385" width="375" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostDetailTextCell" rowHeight="149" id="v4M-j1-5Td" userLabel="PostDetailTextCell" customClass="PostDetailTextCell" customModule="kamimeguri" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="385" width="375" height="149"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v4M-j1-5Td" id="VxW-Yc-akN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8S-y6-J2Z">
-                                                    <rect key="frame" x="16" y="12" width="343" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8S-y6-J2Z">
+                                                    <rect key="frame" x="17" y="0.0" width="343" height="65"/>
+                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="F8S-y6-J2Z" secondAttribute="trailing" constant="16" id="ALR-YR-Z7r"/>
-                                                <constraint firstItem="F8S-y6-J2Z" firstAttribute="leading" secondItem="VxW-Yc-akN" secondAttribute="leading" constant="16" id="pqZ-cG-2Ac"/>
-                                                <constraint firstItem="F8S-y6-J2Z" firstAttribute="top" secondItem="VxW-Yc-akN" secondAttribute="top" constant="12" id="yTD-by-hJD"/>
+                                                <constraint firstAttribute="trailing" secondItem="F8S-y6-J2Z" secondAttribute="trailing" constant="15" id="ALR-YR-Z7r"/>
+                                                <constraint firstItem="F8S-y6-J2Z" firstAttribute="leading" secondItem="VxW-Yc-akN" secondAttribute="leading" constant="17" id="pqZ-cG-2Ac"/>
+                                                <constraint firstItem="F8S-y6-J2Z" firstAttribute="top" secondItem="VxW-Yc-akN" secondAttribute="top" id="yTD-by-hJD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" identifier="PostDetialTextCell"/>
@@ -179,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwQ-Gp-fC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2613.5999999999999" y="-597.75112443778119"/>
+            <point key="canvasLocation" x="2613.5" y="-598.5"/>
         </scene>
     </scenes>
 </document>

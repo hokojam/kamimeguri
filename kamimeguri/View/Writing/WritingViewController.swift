@@ -127,8 +127,31 @@ class WritingViewController: UIViewController, UITextViewDelegate
         DiaryText.resignFirstResponder()
     }
     
+//    if let Iimage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+//        let imageData = UIImageJPEGRepresentation(Iimage, 1)
     
     //撮影ボタン
+//    class MyImageStorage{
+//        var imagePath: NSString?
+//        func getImageData(info:[String : Any]) -> Data {
+//            if let Iimage = info[self.SyuinImage.image] {
+//                let imageData = UIImageJPEGRepresentation(Iimage, 1)
+//            }
+//            return imageData
+//
+//        let url = NSURL(string: "")!
+//        if let imgData = NSData(contentsOfURL: url) {
+//            // Storing image in documents folder (Swift 2.0+)
+//            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+//            let writePath = documentsPath?.stringByAppendingPathComponent("myimage.jpg")
+//
+//            imgData.writeToFile(writePath, atomically: true)
+//
+//            var mystorage = MyImageStorage()
+//            mystorage.imagePath = writePath
+//    }
+//
+    
     
     @IBAction func SyuinBtnTapped(_ sender: UIButton) {
         CameraHandler.shared.showActionSheet(vc: self)
@@ -138,19 +161,27 @@ class WritingViewController: UIViewController, UITextViewDelegate
             self.SyuinImage.image = image
             self.SyuinBtn.isHidden = true
         }
+
+          
     }
     
+    class SaveImgName{
+    var imageName : String?
+    }
     
     @IBAction func MikujiBtnTapped(_ sender: UIButton) {
+        //CameraHandler.shared.imageData
         CameraHandler.shared.showActionSheet(vc: self)
         CameraHandler.shared.imagePickedBlock = { (image) in //これどうなるの
             self.KujiImage.image = image
             self.KujiBtn.isHidden = true
+            var saveImgName = SaveImgName()
+            var diary = Diary()
+            saveImgName.imageName = saveImage(imgTitle: "Mikuji", id: Diary().id, data: Data)  //self.SyuinImage.image
         }
     }
     
-    
-    
+   
     @IBAction func postBtn(_ sender: UIButton) {
         // キーボードを閉じる
         DiaryText.endEditing(true)
@@ -168,10 +199,10 @@ class WritingViewController: UIViewController, UITextViewDelegate
         postDateFormatter.setTemplate(.fullDate)
         let postDate: String = "\(postDateFormatter.string(from: Date()))"
         nowpostDate.text = postDate
-        newDiary.date = nowpostDate.text!
-        newDiary.dateInfo = postDateFormatter.date(from: nowpostDate.text!)! as NSDate
-        
-        
+        newDiary.date = postDate
+        newDiary.dateInfo = postDateFormatter.date(from: postDate)! as NSDate
+
+       
         
 //                newDiary.scencePhoto = self.ScenceImg.image
 //                newDiary.kujiPhoto = self.SyuinImage.image
@@ -184,6 +215,18 @@ class WritingViewController: UIViewController, UITextViewDelegate
         //LogViewController().PostList.reloadData()
     }
     
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    private func saveImage(imgTitle:String, id:Int, data:Data) -> String {
+        let imageName = "\(imgTitle)" + "\(id)" + ".jpg"
+        let filename = getDocumentsDirectory().appendingPathComponent(imageName)
+        try? data.write(to: filename)
+        return imageName
+    }
     
     func saveItems(diary: Diary){
         
@@ -196,10 +239,11 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     diary.id = latestId
                 }
 //                if (nil != imageData) {
-//                    diary.imageName = imageManager.saveImage(data: imageData!, id: diary.id)
-//                } 画像問題。
+//                    diary.imageName = imageManager.saveImage(data, id: diary.id)
+//                }
                 realm.add(diary, update: true)
             }
+            
         }
         catch{
             let alert = UIAlertController(title:"Add New TO DO item",message:"",

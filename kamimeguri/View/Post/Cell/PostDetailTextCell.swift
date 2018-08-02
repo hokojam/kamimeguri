@@ -11,12 +11,5 @@ import UIKit
 class PostDetailTextCell: UITableViewCell {
 
     @IBOutlet weak var PostTextContent: UILabel!
-    
-//    var logData: LogData? {
-//        didSet {
-//            if let logData = logData { //もしlogDateはnilじゃなかったら
-//               PostTextContent.text = logData.postedText
-//            }
-//        }
-//    }
+
 }
