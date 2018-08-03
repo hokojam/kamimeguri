@@ -11,7 +11,7 @@ import Foundation
 extension DateFormatter{
     enum Template: String{
         case weekDay = "EEEE"
-        case MDDate = "MMMdd"
+        case MDDate = "MMM/dd"
         case Year = "YYYY"
         case fullDate = "YYYY-MMM-dd-EEEE"
     }

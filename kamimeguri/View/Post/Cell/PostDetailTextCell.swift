@@ -10,6 +10,8 @@ import UIKit
 
 class PostDetailTextCell: UITableViewCell {
 
+    @IBOutlet weak var PostTextTitle: UILabel!
+    
     @IBOutlet weak var PostTextContent: UILabel!
 
 }

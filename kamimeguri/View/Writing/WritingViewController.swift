@@ -175,9 +175,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
         CameraHandler.shared.imagePickedBlock = { (image) in //これどうなるの
             self.KujiImage.image = image
             self.KujiBtn.isHidden = true
-            var saveImgName = SaveImgName()
-            var diary = Diary()
-            saveImgName.imageName = saveImage(imgTitle: "Mikuji", id: Diary().id, data: Data)  //self.SyuinImage.image
+          //Missing argument for parameter 'data' in call
         }
     }
     
@@ -190,25 +188,32 @@ class WritingViewController: UIViewController, UITextViewDelegate
 
         // 内容を反映する
         newDiary.DiaryText = DiaryText.text
-      
-       
         newDiary.postTempleName = TempleName.text!
         newDiary.postTempleAddress = TempleAddress.text!
-         //newDiary.date = nowpostDate.text!
+        
+        
+        if let scencePhoto = self.KujiImage.image{
+            newDiary.scencePhoto = UIImageJPEGRepresentation(scencePhoto, 0.6)
+        }
+        
+        if let kujiPhoto = self.KujiImage.image{
+            newDiary.kujiPhoto = UIImagePNGRepresentation(kujiPhoto)
+        }
+    
+        
+        if let syuinPhoto = self.SyuinImage.image{
+            newDiary.scencePhoto = UIImagePNGRepresentation(syuinPhoto)
+        }
+        
         let postDateFormatter =  DateFormatter()
         postDateFormatter.setTemplate(.fullDate)
         let postDate: String = "\(postDateFormatter.string(from: Date()))"
         nowpostDate.text = postDate
         newDiary.date = postDate
-        newDiary.dateInfo = postDateFormatter.date(from: postDate)! as NSDate
+        newDiary.dateInfo = Date()//postDateFormatter.date(from: postDate)!
+        newDiary.date = nowpostDate.text!
 
-       
-        
-//                newDiary.scencePhoto = self.ScenceImg.image
-//                newDiary.kujiPhoto = self.SyuinImage.image
-//                newDiary.syuinPhoto = self.KujiImage.image
-        //             let realm = try! realm.write {
-        //             diary.realm?.add(diary, update: true)}
+
         self.saveItems(diary: newDiary)
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         self.dismiss(animated: true, completion: nil)
@@ -221,12 +226,12 @@ class WritingViewController: UIViewController, UITextViewDelegate
         return documentsDirectory
     }
     
-    private func saveImage(imgTitle:String, id:Int, data:Data) -> String {
-        let imageName = "\(imgTitle)" + "\(id)" + ".jpg"
-        let filename = getDocumentsDirectory().appendingPathComponent(imageName)
-        try? data.write(to: filename)
-        return imageName
-    }
+//    private func saveImage(imgTitle:String, id:Int, data:Data) -> String {
+//        let imageName = "\(imgTitle)" + "\(id)" + ".jpg"
+//        let filename = getDocumentsDirectory().appendingPathComponent(imageName)
+//        try? data.write(to: filename)
+//        return imageName
+//    }
     
     func saveItems(diary: Diary){
         
@@ -238,9 +243,8 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     latestId += 1
                     diary.id = latestId
                 }
-//                if (nil != imageData) {
-//                    diary.imageName = imageManager.saveImage(data, id: diary.id)
-//                }
+
+                 //realm.deleteAll() テスト用。データベースをクリア
                 realm.add(diary, update: true)
             }
             

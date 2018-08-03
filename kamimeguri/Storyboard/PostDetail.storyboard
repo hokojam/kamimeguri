@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -85,7 +86,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TN6-0m-kGd">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="267.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="268"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="境内風景" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPd-xt-5lZ">
                                                             <rect key="frame" x="16" y="15" width="343" height="22"/>
@@ -97,24 +98,59 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d02-gc-xaE">
-                                                            <rect key="frame" x="16" y="49.5" width="343" height="202.5"/>
+                                                            <rect key="frame" x="16" y="50" width="343" height="203"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="202.5" id="Ann-Xs-shU"/>
+                                                                <constraint firstAttribute="height" constant="202.5" id="Ann-Xs-shU" userLabel="height = 202"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="8"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                    <real key="value" value="0.29999999999999999"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                    <size key="value" width="2" height="2"/>
+                                                                </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FzH-Vf-BHc">
+                                                            <rect key="frame" x="16" y="50" width="343" height="203"/>
+                                                            <color key="backgroundColor" red="0.69962397941570764" green="0.8230088230268704" blue="0.85166164340253803" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <string key="text">残念！(＞~＜)
+今回は写真ないですが
+今度撮りましょう！</string>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="8"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                    <real key="value" value="0.29999999999999999"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                    <size key="value" width="2" height="2"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
+                                                        <constraint firstItem="FzH-Vf-BHc" firstAttribute="top" secondItem="d02-gc-xaE" secondAttribute="top" id="3vz-XB-Ooo"/>
+                                                        <constraint firstItem="FzH-Vf-BHc" firstAttribute="leading" secondItem="d02-gc-xaE" secondAttribute="leading" id="AdW-QR-qCD"/>
                                                         <constraint firstItem="d02-gc-xaE" firstAttribute="top" secondItem="hPd-xt-5lZ" secondAttribute="bottom" constant="12.5" id="C85-Sf-yke"/>
+                                                        <constraint firstItem="FzH-Vf-BHc" firstAttribute="trailing" secondItem="d02-gc-xaE" secondAttribute="trailing" id="ExD-LE-3s6"/>
                                                         <constraint firstItem="d02-gc-xaE" firstAttribute="leading" secondItem="TN6-0m-kGd" secondAttribute="leading" constant="16" id="MS1-9q-pZW"/>
                                                         <constraint firstItem="hPd-xt-5lZ" firstAttribute="top" secondItem="TN6-0m-kGd" secondAttribute="top" constant="15" id="NFu-wT-dkf"/>
                                                         <constraint firstItem="hPd-xt-5lZ" firstAttribute="leading" secondItem="TN6-0m-kGd" secondAttribute="leading" constant="16" id="SxV-Jx-eU1"/>
                                                         <constraint firstAttribute="trailing" secondItem="d02-gc-xaE" secondAttribute="trailing" constant="16" id="bed-MT-cSp"/>
                                                         <constraint firstAttribute="trailing" secondItem="hPd-xt-5lZ" secondAttribute="trailing" constant="16" id="kpx-NR-auv"/>
                                                         <constraint firstAttribute="bottom" secondItem="d02-gc-xaE" secondAttribute="bottom" constant="15.5" id="oaK-mX-a0g"/>
+                                                        <constraint firstItem="FzH-Vf-BHc" firstAttribute="bottom" secondItem="d02-gc-xaE" secondAttribute="bottom" id="onA-7K-HzV"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -127,33 +163,52 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imageTitle" destination="hPd-xt-5lZ" id="SPy-yQ-2bs"/>
+                                            <outlet property="noPhotoMessage" destination="FzH-Vf-BHc" id="eWf-NH-uHf"/>
                                             <outlet property="postImage" destination="d02-gc-xaE" id="qde-aF-VwB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostDetailTextCell" rowHeight="149" id="v4M-j1-5Td" userLabel="PostDetailTextCell" customClass="PostDetailTextCell" customModule="kamimeguri" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="385" width="375" height="149"/>
+                                    <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostDetailTextCell" rowHeight="224" id="v4M-j1-5Td" userLabel="PostDetailTextCell" customClass="PostDetailTextCell" customModule="kamimeguri" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="385" width="375" height="224"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="v4M-j1-5Td" id="VxW-Yc-akN">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="224"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8S-y6-J2Z">
-                                                    <rect key="frame" x="17" y="0.0" width="343" height="65"/>
-                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="心の響き" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNH-LB-ygl">
+                                                    <rect key="frame" x="14" y="8" width="149" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="149" id="ryQ-Tj-oqy"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                    <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F8S-y6-J2Z">
+                                                    <rect key="frame" x="17" y="34" width="343" height="155"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.38544138518983018" green="0.40192364222508437" blue="0.42262848984771573" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="F8S-y6-J2Z" secondAttribute="trailing" constant="15" id="ALR-YR-Z7r"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="F8S-y6-J2Z" secondAttribute="bottom" constant="24" id="Crb-SM-BoE"/>
+                                                <constraint firstItem="cNH-LB-ygl" firstAttribute="leading" secondItem="VxW-Yc-akN" secondAttribute="leadingMargin" constant="-1" id="T8c-fi-cLL"/>
+                                                <constraint firstItem="cNH-LB-ygl" firstAttribute="top" secondItem="VxW-Yc-akN" secondAttribute="top" constant="8" id="hvU-0M-SMp"/>
                                                 <constraint firstItem="F8S-y6-J2Z" firstAttribute="leading" secondItem="VxW-Yc-akN" secondAttribute="leading" constant="17" id="pqZ-cG-2Ac"/>
-                                                <constraint firstItem="F8S-y6-J2Z" firstAttribute="top" secondItem="VxW-Yc-akN" secondAttribute="top" id="yTD-by-hJD"/>
+                                                <constraint firstItem="F8S-y6-J2Z" firstAttribute="top" secondItem="VxW-Yc-akN" secondAttribute="top" constant="34" id="yTD-by-hJD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" identifier="PostDetialTextCell"/>
                                         <connections>
                                             <outlet property="PostTextContent" destination="F8S-y6-J2Z" id="A0g-Az-fIn"/>
+                                            <outlet property="PostTextTitle" destination="cNH-LB-ygl" id="jiX-15-dnn"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -180,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwQ-Gp-fC6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2613.5" y="-598.5"/>
+            <point key="canvasLocation" x="2612" y="-598.65067466266873"/>
         </scene>
     </scenes>
 </document>

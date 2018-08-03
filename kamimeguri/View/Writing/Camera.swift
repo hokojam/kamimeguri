@@ -67,30 +67,6 @@ extension CameraHandler: UIImagePickerControllerDelegate,UINavigationControllerD
         }else{
             print("Someting went Wrong")
         }
-        let imageTypename : String? = ""
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        let imageUrl = info[UIImagePickerControllerPHAsset] as? NSURL //UIImagePickerControllerReferenceURL
-        let imageName = (imageUrl?.lastPathComponent)! + imageTypename!
-        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let photoURL = NSURL(fileURLWithPath: documentDirectory)
-        let localPath = photoURL.appendingPathComponent(imageName)
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-
-        //let localPath = documentDirectory + "/" + imageName!
-        
-        let imageData = NSData(contentsOfFile: paths.last!)!
-        
-        if !FileManager.default.fileExists(atPath: localPath!.path) {
-            do {
-                try UIImageJPEGRepresentation(image, 1.0)?.write(to: localPath!)
-                print("file saved")
-            }catch {
-                print("error saving file")
-            }
-        }
-        else {
-            print("file already exists")
-        }
         currentVC.dismiss(animated:true, completion:nil)
      }
 }

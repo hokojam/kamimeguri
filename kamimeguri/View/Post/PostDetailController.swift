@@ -63,11 +63,16 @@ extension PostDetailController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailImageCell", for: indexPath) as? PostDetailImageCell {
                 cell.imageTitle.text = imageTitle[indexPath.row]
                 cell.postImage.image = logData?.images[indexPath.row]
+                cell.noPhotoMessage.isHidden = true
+                if cell.postImage.image == nil{
+                        cell.noPhotoMessage.isHidden = false
+                    }
                 return cell
             }
             
         case .text:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PostDetailTextCell", for: indexPath) as? PostDetailTextCell {
+                cell.PostTextTitle.text = "心の響き"
                 cell.PostTextContent.text = logData?.postedText
                 return cell
             }
