@@ -16,10 +16,10 @@ class Diary: Object{
     @objc dynamic var date : String = ""
     @objc dynamic var dateInfo = Date()
     @objc dynamic var DiaryText : String? = ""
-    @objc dynamic var omairiIcon : Data? = nil
-    @objc dynamic var scencePhoto : Data? = nil
-    @objc dynamic var kujiPhoto : Data? = nil
-    @objc dynamic var syuinPhoto : Data? = nil
+    @objc dynamic var omairiIcon : String? = nil
+    @objc dynamic var scencePhotoPath : String? = nil
+    @objc dynamic var kujiPhotoPath : String? = nil
+    @objc dynamic var syuinPhotoPath : String? = nil
     override static func primaryKey() -> String? {
         return "id"
     }

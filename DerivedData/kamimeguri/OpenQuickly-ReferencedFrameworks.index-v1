@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Foundation</string>
+	<string>net</string>
+	<string>CoreLocation</string>
+	<string>RealmSwift</string>
+	<string>CoreData</string>
+	<string>CommonCrypto</string>
+	<string>objc</string>
+	<string>realm</string>
+	<string>GoogleMaps</string>
+	<string>UIKit</string>
+	<string>Realm</string>
+	<string>sys</string>
+</array>
+</plist>

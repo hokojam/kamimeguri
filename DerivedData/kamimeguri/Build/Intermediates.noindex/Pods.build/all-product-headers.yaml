@@ -1,0 +1,82 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Products/Debug-iphoneos/Pods_kamimeguri.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "Pods-kamimeguri-umbrella.h",
+          'external-contents': "/Users/hokojam/Documents/GitHub/kamimeguri/Pods/Target Support Files/Pods-kamimeguri/Pods-kamimeguri-umbrella.h"
+        },
+        {
+          'type': 'file',
+          'name': "Pods_kamimeguri-Swift.h",
+          'external-contents': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Products/Debug-iphoneos/Pods_kamimeguri.framework/Headers/Pods_kamimeguri-Swift.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Products/Debug-iphoneos/Pods_kamimeguri.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Pods-kamimeguri.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Products/Debug-iphoneos/Realm/Realm.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "Realm-Swift.h",
+          'external-contents': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Products/Debug-iphoneos/Realm/Realm.framework/Headers/Realm-Swift.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Products/Debug-iphoneos/Realm/Realm.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Realm.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Products/Debug-iphoneos/RealmSwift/RealmSwift.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "RealmSwift-Swift.h",
+          'external-contents': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Products/Debug-iphoneos/RealmSwift/RealmSwift.framework/Headers/RealmSwift-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "RealmSwift-umbrella.h",
+          'external-contents': "/Users/hokojam/Documents/GitHub/kamimeguri/Pods/Target Support Files/RealmSwift/RealmSwift-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Products/Debug-iphoneos/RealmSwift/RealmSwift.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/RealmSwift.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

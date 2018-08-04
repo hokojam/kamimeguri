@@ -10,8 +10,12 @@ import UIKit
 import CoreData
 import RealmSwift
 
+let fileManager = FileManager.default
+
 class WritingViewController: UIViewController, UITextViewDelegate
 {
+    
+    let fileManager = FileManager.default
     
     //databaseのための追加
     
@@ -19,7 +23,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
     //private var dataArray: [LogData] = []
     var diaryArray: Results<Diary>!//!がないと、Class 'WritingViewController' has no initializers
     //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    //let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
     var nowpostDate = UILabel()
 
@@ -84,6 +88,8 @@ class WritingViewController: UIViewController, UITextViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
         DiaryText.placeholder = "お参りの気持ちはどうですか?"
         DiaryText.delegate = self
         
@@ -127,31 +133,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
         DiaryText.resignFirstResponder()
     }
     
-//    if let Iimage = info[UIImagePickerControllerOriginalImage] as? UIImage{
-//        let imageData = UIImageJPEGRepresentation(Iimage, 1)
-    
-    //撮影ボタン
-//    class MyImageStorage{
-//        var imagePath: NSString?
-//        func getImageData(info:[String : Any]) -> Data {
-//            if let Iimage = info[self.SyuinImage.image] {
-//                let imageData = UIImageJPEGRepresentation(Iimage, 1)
-//            }
-//            return imageData
-//
-//        let url = NSURL(string: "")!
-//        if let imgData = NSData(contentsOfURL: url) {
-//            // Storing image in documents folder (Swift 2.0+)
-//            let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
-//            let writePath = documentsPath?.stringByAppendingPathComponent("myimage.jpg")
-//
-//            imgData.writeToFile(writePath, atomically: true)
-//
-//            var mystorage = MyImageStorage()
-//            mystorage.imagePath = writePath
-//    }
-//
-    
     
     @IBAction func SyuinBtnTapped(_ sender: UIButton) {
         CameraHandler.shared.showActionSheet(vc: self)
@@ -161,8 +142,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
             self.SyuinImage.image = image
             self.SyuinBtn.isHidden = true
         }
-
-          
     }
     
     class SaveImgName{
@@ -191,19 +170,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
         newDiary.postTempleName = TempleName.text!
         newDiary.postTempleAddress = TempleAddress.text!
         
-        
-        if let scencePhoto = self.KujiImage.image{
-            newDiary.scencePhoto = UIImageJPEGRepresentation(scencePhoto, 0.6)
-        }
-        
-        if let kujiPhoto = self.KujiImage.image{
-            newDiary.kujiPhoto = UIImagePNGRepresentation(kujiPhoto)
-        }
-    
-        
-        if let syuinPhoto = self.SyuinImage.image{
-            newDiary.scencePhoto = UIImagePNGRepresentation(syuinPhoto)
-        }
+
         
         let postDateFormatter =  DateFormatter()
         postDateFormatter.setTemplate(.fullDate)
@@ -226,12 +193,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
         return documentsDirectory
     }
     
-//    private func saveImage(imgTitle:String, id:Int, data:Data) -> String {
-//        let imageName = "\(imgTitle)" + "\(id)" + ".jpg"
-//        let filename = getDocumentsDirectory().appendingPathComponent(imageName)
-//        try? data.write(to: filename)
-//        return imageName
-//    }
     
     func saveItems(diary: Diary){
         
@@ -242,7 +203,48 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     latestId = (realm.objects(Diary.self).max(ofProperty: "id") as Int?)!//.max(ofProperty: "id")がわかりません
                     latestId += 1
                     diary.id = latestId
-                }
+                    
+                    let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/UserPhoto"
+                    //=> /var/mobile/Containers/Data/Application/XXXXX-XXXX-XXXX-XXXXXX/Library/Caches/UserPhoto
+                    
+                    do {
+                        
+                        // ディレクトリが存在するかどうかの判定
+                        if !FileManager.default.fileExists(atPath: path) {
+                            
+                            // ディレクトリが無い場合ディレクトリを作成する
+                            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false , attributes: nil)
+                        }
+                        
+                    } catch {
+                        // エラー処理
+                    }
+                    // 保存するパス
+                    
+                            if let scencePhoto = self.ScenceImg.image{
+                               let scenceData = UIImagePNGRepresentation(scencePhoto)
+                               let scenceSavePath = path + "/" + String(diary.id) + "/Syuin.png"//追加
+                                // ファイルに保存
+                                FileManager.default.createFile(atPath: scenceSavePath, contents: scenceData, attributes: nil)
+                                diary.scencePhotoPath = scenceSavePath
+                            }
+                    
+                            if let kujiPhoto = self.KujiImage.image{
+                                let kujiPhotoData = UIImagePNGRepresentation(kujiPhoto)
+                                let kujiSavePath = path + "/" + String(diary.id) + "/scencePhoto.png"//追加
+                                // ファイルに保存
+                                FileManager.default.createFile(atPath: kujiSavePath, contents: kujiPhotoData, attributes: nil)
+                                diary.kujiPhotoPath = kujiSavePath
+                            }
+                    
+                    
+                            if let syuinPhoto = self.SyuinImage.image{
+                                let syuinPhotoData = UIImagePNGRepresentation(syuinPhoto)
+                                let syuinSavePath = path + "/" + String(diary.id) + "/syuinPhoto.png"//追加
+                                // ファイルに保存
+                                FileManager.default.createFile(atPath: syuinSavePath, contents: syuinPhotoData!, attributes: nil)
+                          }
+                      }
 
                  //realm.deleteAll() テスト用。データベースをクリア
                 realm.add(diary, update: true)

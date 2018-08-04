@@ -39,6 +39,7 @@
 		4FF007C620E100CB00B7C922 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF007C420E100CB00B7C922 /* LaunchScreen.storyboard */; };
 		4FFEC4AC21047B2B00C09475 /* PostDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFEC4AB21047B2B00C09475 /* PostDetailController.swift */; };
 		56BB0EB4F06E512D61E58F3D /* Pods_kamimeguri.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E51A6C08B5585BB4A578A9B /* Pods_kamimeguri.framework */; };
+		7AE565402115A39000654FF2 /* FileManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5653F2115A39000654FF2 /* FileManager+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		4FFEC4AB21047B2B00C09475 /* PostDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailController.swift; sourceTree = "<group>"; };
 		6E51A6C08B5585BB4A578A9B /* Pods_kamimeguri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kamimeguri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		715D9B47BE3C9DC913DEA953 /* Pods-kamimeguri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kamimeguri.release.xcconfig"; path = "Pods/Target Support Files/Pods-kamimeguri/Pods-kamimeguri.release.xcconfig"; sourceTree = "<group>"; };
+		7AE5653F2115A39000654FF2 /* FileManager+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+.swift"; sourceTree = "<group>"; };
 		C3A88EE8D873E8B2C7C681F2 /* Pods-kamimeguri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kamimeguri.debug.xcconfig"; path = "Pods/Target Support Files/Pods-kamimeguri/Pods-kamimeguri.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 				4F765762210DE476009BF5F1 /* DateFommat+.swift */,
 				4F78366E20FA17B000191051 /* UIView+.swift */,
 				36DB052621062CAF00C44FD8 /* Bundle+.swift */,
+				7AE5653F2115A39000654FF2 /* FileManager+.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				36B7C6E42106193E004C4B28 /* PostDetailImageCell.swift in Sources */,
 				36DB052721062CAF00C44FD8 /* Bundle+.swift in Sources */,
 				4FF007BA20E100C800B7C922 /* AppDelegate.swift in Sources */,
+				7AE565402115A39000654FF2 /* FileManager+.swift in Sources */,
 				4FB218B9211177AE0093AB91 /* PostDetailTextCell.swift in Sources */,
 				4F787E2F20EE33010068B061 /* Camera.swift in Sources */,
 				4F9E1C8E20FCB3AF006047C1 /* WishListCell.swift in Sources */,
@@ -523,10 +527,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos11.3;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -577,9 +581,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos11.3;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -594,7 +599,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N27P8FWLGD;
 				INFOPLIST_FILE = kamimeguri/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -614,7 +619,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N27P8FWLGD;
 				INFOPLIST_FILE = kamimeguri/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

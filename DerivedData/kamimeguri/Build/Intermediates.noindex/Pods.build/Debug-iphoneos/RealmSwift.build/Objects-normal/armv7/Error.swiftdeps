@@ -1,0 +1,224 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "=="
+- "~="
+provides-nominal:
+- "10RealmSwift0A0C5ErrorV"
+provides-member:
+- ["10RealmSwift0A0C", ""]
+- ["10RealmSwift0A0C5ErrorV", ""]
+- ["10RealmSwift0A0C", "Error"]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "&&"
+- "=="
+- "AssignmentPrecedence"
+- "Bool"
+- "CastingPrecedence"
+- "Equatable"
+- "Error"
+- "NSError"
+- !private "RLMBackupRealmConfigurationErrorKey"
+- "RLMError"
+- "RLMErrorDomain"
+- "Realm"
+- "_BridgedStoredNSError"
+- "~="
+depends-member:
+- !private ["10RealmSwift0A0C13ConfigurationV", "fromRLMRealmConfiguration"]
+- ["10Foundation13CustomNSErrorP", "Code"]
+- !private ["10Foundation13CustomNSErrorP", "RLMBackupRealmConfigurationErrorKey"]
+- ["10Foundation13CustomNSErrorP", "RLMError"]
+- ["10Foundation13CustomNSErrorP", "RLMErrorDomain"]
+- !private ["10Foundation13CustomNSErrorP", "Realm"]
+- ["10Foundation13CustomNSErrorP", ""]
+- ["10Foundation13CustomNSErrorP", "_code"]
+- ["10Foundation13CustomNSErrorP", "_domain"]
+- ["10Foundation13CustomNSErrorP", "_getEmbeddedNSError"]
+- ["10Foundation13CustomNSErrorP", "_nsError"]
+- ["10Foundation13CustomNSErrorP", "_nsErrorDomain"]
+- ["10Foundation13CustomNSErrorP", "_userInfo"]
+- ["10Foundation13CustomNSErrorP", "errorCode"]
+- ["10Foundation13CustomNSErrorP", "errorDomain"]
+- ["10Foundation13CustomNSErrorP", "errorUserInfo"]
+- ["10Foundation13CustomNSErrorP", "hashValue"]
+- ["10Foundation13CustomNSErrorP", "init"]
+- !private ["10Foundation13CustomNSErrorP", "userInfo"]
+- !private ["s23CustomStringConvertibleP", "fromRLMRealmConfiguration"]
+- ["s9EquatableP", "Code"]
+- ["s9EquatableP", "Configuration"]
+- ["s9EquatableP", "Error"]
+- !private ["s9EquatableP", "RLMBackupRealmConfigurationErrorKey"]
+- ["s9EquatableP", "RLMError"]
+- ["s9EquatableP", "RLMErrorDomain"]
+- !private ["s9EquatableP", "Realm"]
+- ["s9EquatableP", ""]
+- ["s9EquatableP", "_code"]
+- ["s9EquatableP", "_domain"]
+- ["s9EquatableP", "_getEmbeddedNSError"]
+- ["s9EquatableP", "_nsError"]
+- ["s9EquatableP", "_nsErrorDomain"]
+- ["s9EquatableP", "_userInfo"]
+- ["s9EquatableP", "errorCode"]
+- ["s9EquatableP", "errorDomain"]
+- ["s9EquatableP", "errorUserInfo"]
+- ["s9EquatableP", "hashValue"]
+- ["s9EquatableP", "init"]
+- !private ["s9EquatableP", "userInfo"]
+- ["10RealmSwift0A0C5ErrorV", "Code"]
+- ["10RealmSwift0A0C5ErrorV", "NSError"]
+- !private ["10RealmSwift0A0C5ErrorV", "RLMBackupRealmConfigurationErrorKey"]
+- ["10RealmSwift0A0C5ErrorV", "RLMError"]
+- ["10RealmSwift0A0C5ErrorV", "RLMErrorDomain"]
+- ["10RealmSwift0A0C5ErrorV", "Realm"]
+- ["10RealmSwift0A0C5ErrorV", "_code"]
+- ["10RealmSwift0A0C5ErrorV", "_domain"]
+- ["10RealmSwift0A0C5ErrorV", "_getEmbeddedNSError"]
+- ["10RealmSwift0A0C5ErrorV", "_nsError"]
+- ["10RealmSwift0A0C5ErrorV", "_nsErrorDomain"]
+- ["10RealmSwift0A0C5ErrorV", "_userInfo"]
+- ["10RealmSwift0A0C5ErrorV", "backupConfiguration"]
+- ["10RealmSwift0A0C5ErrorV", "deinit"]
+- ["10RealmSwift0A0C5ErrorV", "errorCode"]
+- ["10RealmSwift0A0C5ErrorV", "errorDomain"]
+- ["10RealmSwift0A0C5ErrorV", "errorUserInfo"]
+- ["10RealmSwift0A0C5ErrorV", "hashValue"]
+- ["10RealmSwift0A0C5ErrorV", "init"]
+- !private ["10RealmSwift0A0C5ErrorV", "userInfo"]
+- ["s5ErrorP", "Code"]
+- !private ["s5ErrorP", "RLMBackupRealmConfigurationErrorKey"]
+- ["s5ErrorP", "RLMError"]
+- ["s5ErrorP", "RLMErrorDomain"]
+- !private ["s5ErrorP", "Realm"]
+- ["s5ErrorP", ""]
+- ["s5ErrorP", "_code"]
+- ["s5ErrorP", "_domain"]
+- ["s5ErrorP", "_getEmbeddedNSError"]
+- ["s5ErrorP", "_nsError"]
+- ["s5ErrorP", "_nsErrorDomain"]
+- ["s5ErrorP", "_userInfo"]
+- ["s5ErrorP", "errorCode"]
+- ["s5ErrorP", "errorDomain"]
+- ["s5ErrorP", "errorUserInfo"]
+- ["s5ErrorP", "hashValue"]
+- ["s5ErrorP", "init"]
+- !private ["s5ErrorP", "userInfo"]
+- ["s8HashableP", "Code"]
+- !private ["s8HashableP", "RLMBackupRealmConfigurationErrorKey"]
+- ["s8HashableP", "RLMError"]
+- ["s8HashableP", "RLMErrorDomain"]
+- !private ["s8HashableP", "Realm"]
+- ["s8HashableP", ""]
+- ["s8HashableP", "_code"]
+- ["s8HashableP", "_domain"]
+- ["s8HashableP", "_getEmbeddedNSError"]
+- ["s8HashableP", "_nsError"]
+- ["s8HashableP", "_nsErrorDomain"]
+- ["s8HashableP", "_userInfo"]
+- ["s8HashableP", "errorCode"]
+- ["s8HashableP", "errorDomain"]
+- ["s8HashableP", "errorUserInfo"]
+- ["s8HashableP", "hashValue"]
+- ["s8HashableP", "init"]
+- !private ["s8HashableP", "userInfo"]
+- ["10RealmSwift0A0C", "Configuration"]
+- ["10RealmSwift0A0C", "Error"]
+- ["10RealmSwift0A0C", "NSError"]
+- !private ["10RealmSwift0A0C", "RLMBackupRealmConfigurationErrorKey"]
+- ["10RealmSwift0A0C", "RLMError"]
+- ["10RealmSwift0A0C", "Realm"]
+- ["10Foundation21_BridgedStoredNSErrorP", "Code"]
+- !private ["10Foundation21_BridgedStoredNSErrorP", "RLMBackupRealmConfigurationErrorKey"]
+- ["10Foundation21_BridgedStoredNSErrorP", "RLMError"]
+- ["10Foundation21_BridgedStoredNSErrorP", "RLMErrorDomain"]
+- !private ["10Foundation21_BridgedStoredNSErrorP", "Realm"]
+- ["10Foundation21_BridgedStoredNSErrorP", ""]
+- ["10Foundation21_BridgedStoredNSErrorP", "_code"]
+- ["10Foundation21_BridgedStoredNSErrorP", "_domain"]
+- ["10Foundation21_BridgedStoredNSErrorP", "_getEmbeddedNSError"]
+- ["10Foundation21_BridgedStoredNSErrorP", "_nsError"]
+- ["10Foundation21_BridgedStoredNSErrorP", "_nsErrorDomain"]
+- ["10Foundation21_BridgedStoredNSErrorP", "_userInfo"]
+- ["10Foundation21_BridgedStoredNSErrorP", "errorCode"]
+- ["10Foundation21_BridgedStoredNSErrorP", "errorDomain"]
+- ["10Foundation21_BridgedStoredNSErrorP", "errorUserInfo"]
+- ["10Foundation21_BridgedStoredNSErrorP", "hashValue"]
+- ["10Foundation21_BridgedStoredNSErrorP", "init"]
+- !private ["10Foundation21_BridgedStoredNSErrorP", "userInfo"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "Code"]
+- !private ["10Foundation26_ObjectiveCBridgeableErrorP", "RLMBackupRealmConfigurationErrorKey"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "RLMError"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "RLMErrorDomain"]
+- !private ["10Foundation26_ObjectiveCBridgeableErrorP", "Realm"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", ""]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "_code"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "_domain"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "_getEmbeddedNSError"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "_nsError"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "_nsErrorDomain"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "_userInfo"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "errorCode"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "errorDomain"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "errorUserInfo"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "hashValue"]
+- ["10Foundation26_ObjectiveCBridgeableErrorP", "init"]
+- !private ["10Foundation26_ObjectiveCBridgeableErrorP", "userInfo"]
+- ["10Foundation16__BridgedNSErrorP", "Code"]
+- !private ["10Foundation16__BridgedNSErrorP", "RLMBackupRealmConfigurationErrorKey"]
+- ["10Foundation16__BridgedNSErrorP", "RLMError"]
+- ["10Foundation16__BridgedNSErrorP", "RLMErrorDomain"]
+- !private ["10Foundation16__BridgedNSErrorP", "Realm"]
+- ["10Foundation16__BridgedNSErrorP", ""]
+- ["10Foundation16__BridgedNSErrorP", "_code"]
+- ["10Foundation16__BridgedNSErrorP", "_domain"]
+- ["10Foundation16__BridgedNSErrorP", "_getEmbeddedNSError"]
+- ["10Foundation16__BridgedNSErrorP", "_nsError"]
+- ["10Foundation16__BridgedNSErrorP", "_nsErrorDomain"]
+- ["10Foundation16__BridgedNSErrorP", "_userInfo"]
+- ["10Foundation16__BridgedNSErrorP", "errorCode"]
+- ["10Foundation16__BridgedNSErrorP", "errorDomain"]
+- ["10Foundation16__BridgedNSErrorP", "errorUserInfo"]
+- ["10Foundation16__BridgedNSErrorP", "hashValue"]
+- ["10Foundation16__BridgedNSErrorP", "init"]
+- !private ["10Foundation16__BridgedNSErrorP", "userInfo"]
+depends-nominal:
+- !private "10RealmSwift0A0C13ConfigurationV"
+- "10Foundation13CustomNSErrorP"
+- !private "s23CustomStringConvertibleP"
+- "s9EquatableP"
+- "10RealmSwift0A0C5ErrorV"
+- "s5ErrorP"
+- "s8HashableP"
+- "10RealmSwift0A0C"
+- "10Foundation21_BridgedStoredNSErrorP"
+- "10Foundation26_ObjectiveCBridgeableErrorP"
+- "10Foundation16__BridgedNSErrorP"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Metal.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/SwiftOnoneSupport.swiftmodule"
+- "/Users/hokojam/Documents/GitHub/kamimeguri/Pods/Target Support Files/RealmSwift/RealmSwift-umbrella.h"
+- "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/RealmSwift.build/unextended-module.modulemap"
+- "/Users/hokojam/Documents/GitHub/kamimeguri/DerivedData/kamimeguri/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Realm.build/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/usr/include/objc/ObjectiveC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/OpenGLES.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/CoreImage.framework/Headers/CoreImage.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Metal.framework/Headers/Metal.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/usr/include/Darwin.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CoreGraphics.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
+interface-hash: "d89858ddf46d9535c8e94fb432bce062"

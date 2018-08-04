@@ -36,16 +36,17 @@ class LogData { //データを受け入れるお皿です,どんな値を入れ�
     
     init(diary:Diary) {//なんでここでinit?
         id = diary.id //optional型はif let を使う
-        if let scencePhoto = diary.scencePhoto{
-            self.scencePhoto = UIImage(data: scencePhoto)
-        }
-        if let syuinPhoto = diary.syuinPhoto{
-        self.syuinPhoto = UIImage(data:syuinPhoto)
-        }
-        if let kujiPhoto = diary.kujiPhoto{
-            self.kujiPhoto = UIImage(data:kujiPhoto)
-        }
-    
+        //path -> data
+//        if let scencePhoto = diary.scencePhoto{
+//            self.scencePhoto = UIImage(data: scencePhoto)
+//        }
+//        if let syuinPhotoPath = diary.syuinPhoto{
+//        self.syuinPhoto = UIImage(data:syuinPhoto)
+//        }
+//        if let kujiPhoto = diary.kujiPhoto{
+//            self.kujiPhoto = UIImage(data:kujiPhoto)
+//        }
+//
         let PostYearInfo = DateFormatter()
         PostYearInfo.setTemplate(.Year)
         postYear = "\(PostYearInfo.string(from: diary.dateInfo))"
