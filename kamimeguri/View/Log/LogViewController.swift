@@ -42,8 +42,6 @@ class LogViewController:  UIViewController {
     }
 
     
-   
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let postDetail = segue.destination as? PostDetailController,
             let logData = sender as? LogData {

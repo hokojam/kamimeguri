@@ -11,11 +11,15 @@ import CoreData
 import RealmSwift
 
 let fileManager = FileManager.default
+// Pathを生成
+let path = Bundle.main.path(forResource: "sample", ofType: "txt")
+let data = FileManager.default.contents(atPath: path!)
 
 class WritingViewController: UIViewController, UITextViewDelegate
 {
     
-    let fileManager = FileManager.default
+    
+    
     
     //databaseのための追加
     
@@ -26,7 +30,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
     //let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     
     var nowpostDate = UILabel()
-
+    
     @IBOutlet weak var TempleName: UILabel!
     
     @IBOutlet weak var TempleAddress: UILabel!
@@ -83,12 +87,12 @@ class WritingViewController: UIViewController, UITextViewDelegate
         // 改行コードは入力しない
         return false
     }
-
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         
         DiaryText.placeholder = "お参りの気持ちはどうですか?"
         DiaryText.delegate = self
@@ -145,7 +149,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
     }
     
     class SaveImgName{
-    var imageName : String?
+        var imageName : String?
     }
     
     @IBAction func MikujiBtnTapped(_ sender: UIButton) {
@@ -154,23 +158,23 @@ class WritingViewController: UIViewController, UITextViewDelegate
         CameraHandler.shared.imagePickedBlock = { (image) in //これどうなるの
             self.KujiImage.image = image
             self.KujiBtn.isHidden = true
-          //Missing argument for parameter 'data' in call
+            //Missing argument for parameter 'data' in call
         }
     }
     
-   
+    
     @IBAction func postBtn(_ sender: UIButton) {
         // キーボードを閉じる
         DiaryText.endEditing(true)
-      
+        
         let newDiary = Diary()
-
+        
         // 内容を反映する
         newDiary.DiaryText = DiaryText.text
         newDiary.postTempleName = TempleName.text!
         newDiary.postTempleAddress = TempleAddress.text!
         
-
+        
         
         let postDateFormatter =  DateFormatter()
         postDateFormatter.setTemplate(.fullDate)
@@ -179,8 +183,8 @@ class WritingViewController: UIViewController, UITextViewDelegate
         newDiary.date = postDate
         newDiary.dateInfo = Date()//postDateFormatter.date(from: postDate)!
         newDiary.date = nowpostDate.text!
-
-
+        
+        
         self.saveItems(diary: newDiary)
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         self.dismiss(animated: true, completion: nil)
@@ -221,33 +225,53 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     }
                     // 保存するパス
                     
-                            if let scencePhoto = self.ScenceImg.image{
-                               let scenceData = UIImagePNGRepresentation(scencePhoto)
-                               let scenceSavePath = path + "/" + String(diary.id) + "/Syuin.png"//追加
-                                // ファイルに保存
-                                FileManager.default.createFile(atPath: scenceSavePath, contents: scenceData, attributes: nil)
-                                diary.scencePhotoPath = scenceSavePath
-                            }
+                    if self.ScenceImg.image != nil {
+                        //let scenceData = UIImagePNGRepresentation(scencePhoto)
+                        //ちゃんと画像名をつけてあげる
+                        let scencePhotoName = String(diary.id) + "/Syuin.png"//追加
+                        let scencePhotoPath = FileManager.default.documentPath(fileName: scencePhotoName)
+                        // 画像をサンドボックスに保存
+                        let scencePhotoURL = URL(string: scencePhotoPath)
+                        //FileManager.default.documentURL(syuinPhotoName)
+                        let scenceData = try? Data(contentsOf: scencePhotoURL!)
+                        FileManager.default.createFile(atPath: scencePhotoPath, contents: scenceData, attributes: nil)
+                        //URLを表示するStringをRealmで保存
+                        diary.scencePhotoPath = scencePhotoPath
+                    }
+                                  
+                    if self.KujiImage.image != nil {
+                        //let scenceData = UIImagePNGRepresentation(scencePhoto)
+                        //ちゃんと画像名をつけてあげる
+                        let kujiPhotoName = String(diary.id) + "/Kuji.png"//追加
+                        let kujiPhotoPath = FileManager.default.documentPath(fileName: kujiPhotoName)
+                        //URLを表示するStringをRealmで保存
+                        diary.kujiPhotoPath = kujiPhotoPath
+                        // 画像をサンドボックスに保存
+                        let kujiPhotoURL = URL(string: kujiPhotoPath)
+                        let kujiData = try? Data(contentsOf: kujiPhotoURL!)
+                        FileManager.default.createFile(atPath: kujiPhotoPath, contents: kujiData, attributes: nil)
+                        //URLを表示するStringをRealmで保存
+                        diary.kujiPhotoPath = kujiPhotoPath
+                    }
                     
-                            if let kujiPhoto = self.KujiImage.image{
-                                let kujiPhotoData = UIImagePNGRepresentation(kujiPhoto)
-                                let kujiSavePath = path + "/" + String(diary.id) + "/scencePhoto.png"//追加
-                                // ファイルに保存
-                                FileManager.default.createFile(atPath: kujiSavePath, contents: kujiPhotoData, attributes: nil)
-                                diary.kujiPhotoPath = kujiSavePath
-                            }
-                    
-                    
-                            if let syuinPhoto = self.SyuinImage.image{
-                                let syuinPhotoData = UIImagePNGRepresentation(syuinPhoto)
-                                let syuinSavePath = path + "/" + String(diary.id) + "/syuinPhoto.png"//追加
-                                // ファイルに保存
-                                FileManager.default.createFile(atPath: syuinSavePath, contents: syuinPhotoData!, attributes: nil)
-                          }
-                      }
-
-                 //realm.deleteAll() テスト用。データベースをクリア
-                realm.add(diary, update: true)
+                    if self.SyuinImage.image != nil {
+                        //let scenceData = UIImagePNGRepresentation(scencePhoto)
+                        //ちゃんと画像名をつけてあげる
+                        let syuinPhotoName = String(diary.id) + "/Kuji.png"//追加
+                        let syuinPhotoPath = FileManager.default.documentPath(fileName: syuinPhotoName)
+                        // 画像をサンドボックスに保存
+                        let syuinPhotoURL = URL(string: syuinPhotoPath)
+                        //FileManager.default.documentURL(syuinPhotoName)
+                        let scenceData = try? Data(contentsOf: syuinPhotoURL!)
+                        //FileManager.default.writeImage(url: syuinPhotoURL!, image: self.SyuinImage.image!)
+                        FileManager.default.createFile(atPath: syuinPhotoPath, contents: scenceData, attributes: nil)
+                        //URLを表示するStringをRealmで保存
+                        diary.syuinPhotoPath = syuinPhotoPath
+                    }
+                }
+                
+               //realm.deleteAll() //テスト用。データベースをクリア
+               realm.add(diary, update: true)
             }
             
         }
@@ -256,13 +280,13 @@ class WritingViewController: UIViewController, UITextViewDelegate
                                           preferredStyle: .alert)
             //alert.addAction(action)
             present(alert, animated: true, completion:nil)
-           }
+        }
         //
-       }
+    }
     
     func loadItems(){
-     diaryArray = realm.objects(Diary.self)
+        diaryArray = realm.objects(Diary.self)
         //Cannot assign value of type 'Results<Diary>' to type '[Diary]'
-     LogViewController().PostList.reloadData()
-   }
+        LogViewController().PostList.reloadData()
+    }
 }

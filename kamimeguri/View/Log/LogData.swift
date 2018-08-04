@@ -35,18 +35,27 @@ class LogData { //データを受け入れるお皿です,どんな値を入れ�
     }
     
     init(diary:Diary) {//なんでここでinit?
-        id = diary.id //optional型はif let を使う
+        id = diary.id
         //path -> data
-//        if let scencePhoto = diary.scencePhoto{
-//            self.scencePhoto = UIImage(data: scencePhoto)
-//        }
-//        if let syuinPhotoPath = diary.syuinPhoto{
-//        self.syuinPhoto = UIImage(data:syuinPhoto)
-//        }
-//        if let kujiPhoto = diary.kujiPhoto{
-//            self.kujiPhoto = UIImage(data:kujiPhoto)
-//        }
-//
+        //風景写真
+        if let scencePhotoPath = diary.scencePhotoPath{
+            self.scencePhoto = UIImage(contentsOfFile: scencePhotoPath)
+            //let logScenceImage = FileManager.default.getImage(atPath: scencePhotoPath)
+            //self.scencePhoto = logScenceImage
+        }
+        //御朱印写真
+        if let syuinPhotoPath = diary.syuinPhotoPath{
+            self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
+            //let logSyuinImage = FileManager.default.getImage(atPath: syuinPhotoPath)
+            //self.syuinPhoto = logSyuinImage
+        }
+        //くじ写真
+        if let kujiPhotoPath = diary.syuinPhotoPath{
+            self.kujiPhoto = UIImage(contentsOfFile: kujiPhotoPath)
+            //let logKujiImage = FileManager.default.getImage(atPath: kujiPhotoPath)
+            //self.kujiPhoto = logKujiImage
+        }
+        
         let PostYearInfo = DateFormatter()
         PostYearInfo.setTemplate(.Year)
         postYear = "\(PostYearInfo.string(from: diary.dateInfo))"
@@ -64,7 +73,7 @@ class LogData { //データを受け入れるお皿です,どんな値を入れ�
         }
         postTempleName = diary.postTempleName
         postTempleAddress = diary.postTempleAddress
+        
+    }
     
-}
-
 }
