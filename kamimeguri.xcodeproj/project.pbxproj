@@ -42,6 +42,18 @@
 		7AE565402115A39000654FF2 /* FileManager+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE5653F2115A39000654FF2 /* FileManager+.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		7A42A9B92116E14D007D4C8F /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = text.plist;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# builtin-copyPlist\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		36B7C6D42106078D004C4B28 /* Log.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Log.storyboard; sourceTree = "<group>"; };
 		36B7C6D621060B25004C4B28 /* PostDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PostDetail.storyboard; sourceTree = "<group>"; };
@@ -304,6 +316,7 @@
 				8323505AFD374079D76152FF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
+				7A42A9B92116E14D007D4C8F /* PBXBuildRule */,
 			);
 			dependencies = (
 			);

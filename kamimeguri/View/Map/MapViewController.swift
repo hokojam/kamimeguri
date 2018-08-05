@@ -23,7 +23,7 @@ var height = bounds.size.height
 var myMapView = GMSMapView()
 
 class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate{
-    
+
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var InfoLabel: UIView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -32,6 +32,9 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
     @IBAction func WritingBtnTapped(_ sender: UIButton) {
     }
     var locationManager: CLLocationManager!
+    
+    let latitudeNowLabel = UILabel()
+    let longtitudeNowLabel = UILabel()
 
     //------------------地図を表示  start----------------------------------
     //最初からあるメソッド
@@ -44,10 +47,9 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+ 
         // set map view delegate
         //myMapView.delegate = self
         locationManager = CLLocationManager()
@@ -78,6 +80,46 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         
         //------------------地図を表示  end----------------------------------
         
+        //------------------通信、hotokami databaseとつなぐ
+        let myUrl = URL(string: "http://192.168.100.138/kamimeguriServer/kamimeguriMap.php");
+        
+        var request = URLRequest(url:myUrl!)
+        
+        request.httpMethod = "POST"// Compose a query string
+        
+        let postString = "latitudeNow,longtitudeNow";
+        
+        request.httpBody = postString.data(using: String.Encoding.utf8);
+        
+        let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
+            
+            if error != nil
+            {
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            // You can print out response object
+            print("response = \(String(describing: response))")
+            
+            //Let's convert response sent from a server side script to a NSDictionary object:
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                
+                if let parseJSON = json {
+                    print(parseJSON)
+                    var templeName: String
+                    var templeAddress: String
+                    templeName = (parseJSON["templeNameNow"] as? String)!
+                    templeAddress = (parseJSON["templeAddressNow"] as? String)!
+                    print("今ここにいるよ: \(templeName)")
+                    print("住所はここよ: \(templeAddress)")
+                }
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
         
         //------------------日付などのラベル   start----------------------------------
         infoView.layer.cornerRadius = 20
@@ -101,7 +143,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
  
         myMapView.addSubview(WritingBtn)
         myMapView.addSubview(infoView)
-        
     }
     
     //Location Manager delegates 地図が出る
@@ -118,17 +159,24 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         let position = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!) //need to be unwrapped (read one more time)
         let marker = GMSMarker(position: position)
        
-        marker.title = "東京大神宮"//APIで取得
-        marker.snippet = "東京都千代田区富士見２丁目４−１"
+        marker.title = "東京大神宮"//templeNameNow
+        marker.snippet = "東京都千代田区富士見２丁目４−１" //templeAddressNow
         //marker.appearAnimation = kGMSMarkerAnimationPop
         marker.icon = UIImage(named: "mapMarker_shrine")//
         marker.isFlat = true
         marker.map = myMapView
         myMapView.selectedMarker = marker
         
+        
+        let latitudeNow: Double = manager.location!.coordinate.latitude
+        let longtitudeNow: Double = manager.location!.coordinate.latitude
+        latitudeNowLabel.text = String(latitudeNow)
+        longtitudeNowLabel.text = String(longtitudeNow)
         //location
         self.locationManager.stopUpdatingLocation()//??調べる
     }
+    
+   
     
     
     func buttonTapped(_ sender: UIButton!) {
@@ -142,8 +190,8 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
             postDateInfoFormatter.setTemplate(.fullDate)
             let postDate: String = "\(postDateInfoFormatter.string(from: Date()))"
             WritingViewController.nowpostDate.text = postDate
-//              WritingViewController.TempleName.text = "" APIから取る
-//              WritingViewController.TempleAddress.text = APIから取る
+//              WritingViewController.TempleName.text = templeNameNow
+//              WritingViewController.TempleAddress.text = templeAddressNow
             
 
         }

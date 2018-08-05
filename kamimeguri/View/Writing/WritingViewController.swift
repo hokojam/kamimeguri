@@ -212,7 +212,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     //=> /var/mobile/Containers/Data/Application/XXXXX-XXXX-XXXX-XXXXXX/Library/Caches/UserPhoto
                     
                     do {
-                        
                         // ディレクトリが存在するかどうかの判定
                         if !FileManager.default.fileExists(atPath: path) {
                             
@@ -238,7 +237,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
                         //URLを表示するStringをRealmで保存
                         diary.scencePhotoPath = scencePhotoPath
                     }
-                                  
+                    
                     if self.KujiImage.image != nil {
                         //let scenceData = UIImagePNGRepresentation(scencePhoto)
                         //ちゃんと画像名をつけてあげる
