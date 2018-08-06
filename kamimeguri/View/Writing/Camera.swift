@@ -16,6 +16,7 @@ class CameraHandler: NSObject{
     fileprivate var currentVC: UIViewController!
     
     var imagePickedBlock: ((UIImage) -> Void)?
+    var imagePickedURL: URL?
     
     //showActionSheet()
     func showActionSheet(vc: UIViewController){
@@ -67,18 +68,13 @@ extension CameraHandler: UIImagePickerControllerDelegate,UINavigationControllerD
         }else{
             print("Someting went Wrong")
         }
+        if let imageUrl = info[UIImagePickerControllerMediaURL] as? URL{
+            self.imagePickedURL = imageUrl
+            
+        }else{
+            print("Something went wrong in  video")
+        }
         currentVC.dismiss(animated:true, completion:nil)
      }
 }
 
-//
-//
-//func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//    let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-//    imageBox.image = chosenImage
-//
-//    imageData = diaryRepository.getImageData(info: info) // 1-1 사용
-//
-//    picker.dismiss(animated: true, completion: nil)
-//
-//}

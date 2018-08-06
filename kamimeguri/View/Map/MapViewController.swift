@@ -86,11 +86,8 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         let myUrl = URL(string: "http://192.168.3.13/kamimeguriServer/kamimeguriMap.php");
         
         var request = URLRequest(url:myUrl!)
-        
         request.httpMethod = "POST"// Compose a query string
-        
-        let postString = "latitudeNow,longtitudeNow";
-        
+        let postString = "$latitudeNow=\(latitudeNow);$longtitudeNow=\(longtitudeNow);";
         request.httpBody = postString.data(using: String.Encoding.utf8);
         
         let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
@@ -105,13 +102,16 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
             print("response = \(String(describing: response))")
             
             //Let's convert response sent from a server side script to a NSDictionary object:
+            
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 
                 if let parseJSON = json {
                     print(parseJSON)
-                    self.templeName = (parseJSON["templeNameNow"] as? String)!
-                    self.templeAddress = (parseJSON["templeAddressNow"] as? String)!
+//                    let name: NSArray = NSArray(array: dictionary["name"] as! NSArray)
+//                    NSLog("tanaka = \(name[0]), Suzuki = \(name[1]), Sato = \(name[2])")
+                    self.templeName = (parseJSON["templeNameNow[0]"] as? String)!
+                    self.templeAddress = (parseJSON["templeAddressNow[0]"] as? String)!
                     print("今ここにいるよ: \(self.templeName)")
                     print("住所はここよ: \(self.templeAddress)")
                 }

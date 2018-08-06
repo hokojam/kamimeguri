@@ -14,20 +14,16 @@ let fileManager = FileManager.default
 // Pathを生成
 let path = Bundle.main.path(forResource: "sample", ofType: "txt")
 let data = FileManager.default.contents(atPath: path!)
-
+//let writingdata = WtirtingData(img)
 class WritingViewController: UIViewController, UITextViewDelegate
 {
-    
-    
-    
     
     //databaseのための追加
     
     let realm = try! Realm()
     //private var dataArray: [LogData] = []
     var diaryArray: Results<Diary>!//!がないと、Class 'WritingViewController' has no initializers
-    //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    //let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+
     
     var nowpostDate = UILabel()
     
@@ -59,7 +55,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
         CameraHandler.shared.imagePickedBlock = { (image) in
             self.ScenceImg.image = image
             self.ScenceBtn.isHidden = true
-            
         }
     }
     
@@ -168,12 +163,9 @@ class WritingViewController: UIViewController, UITextViewDelegate
         DiaryText.endEditing(true)
         
         let newDiary = Diary()
-        
-        // 内容を反映する
         newDiary.DiaryText = DiaryText.text
         newDiary.postTempleName = TempleName.text!
         newDiary.postTempleAddress = TempleAddress.text!
-        
         
         
         let postDateFormatter =  DateFormatter()
@@ -208,8 +200,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     latestId += 1
                     diary.id = latestId
                     
-                    let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/UserPhoto"
-                    //=> /var/mobile/Containers/Data/Application/XXXXX-XXXX-XXXX-XXXXXX/Library/Caches/UserPhoto
+                    let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/" +  "\(diary.id)"
                     
                     do {
                         // ディレクトリが存在するかどうかの判定
@@ -218,55 +209,35 @@ class WritingViewController: UIViewController, UITextViewDelegate
                             // ディレクトリが無い場合ディレクトリを作成する
                             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false , attributes: nil)
                         }
-                        
                     } catch {
-                        // エラー処理
                     }
-                    // 保存するパス
+//                    if !FileManager.default.fileExists(atPath: fileURL.path) {
+//                        do {
+//                            try UIImagePNGRepresentation(imageView.image!)!.write(to: fileURL)
+//                            print("Image Added Successfully")
+                     let wiritngData = WiringData()
+                    wiritngData.scencePhotoName = "/"+"\(latestId)"+"/Scence.png"
+                    if let ScenceImgSavetoFile = UIImagePNGRepresentation(self.ScenceImg.image!),
+                        !FileManager.default.fileExists(atPath: wiritngData.scencePhotoPath){
+                            do {
+                                // writes the image data to disk
+                                try ScenceImgSavetoFile.write(to: wiritngData.scencePhotoURL!)
+                                print("file saved")
+                            } catch {
+                                print("error saving file:", error)
+                           }
+                       }
+                    diary.kujiPhotoPath = wiritngData.kujiPhotoPath
                     
-                    if self.ScenceImg.image != nil {
-                        //let scenceData = UIImagePNGRepresentation(scencePhoto)
-                        //ちゃんと画像名をつけてあげる
-                        let scencePhotoName = String(diary.id) + "/Syuin.png"//追加
-                        let scencePhotoPath = FileManager.default.documentPath(fileName: scencePhotoName)
-                        // 画像をサンドボックスに保存
-                        let scencePhotoURL = URL(string: scencePhotoPath)
-                        //FileManager.default.documentURL(syuinPhotoName)
-                        let scenceData = try? Data(contentsOf: scencePhotoURL!)
-                        FileManager.default.createFile(atPath: scencePhotoPath, contents: scenceData, attributes: nil)
-                        //URLを表示するStringをRealmで保存
-                        diary.scencePhotoPath = scencePhotoPath
-                    }
+                    wiritngData.kujiPhotoName = "/"+"\(latestId)"+"/Kuji.png"
+                    _ = FileManager.default.writeImage(url: wiritngData.kujiPhotoURL!, image: self.KujiImage.image!)
+                    _ = FileManager.default.createFile(atPath: wiritngData.kujiPhotoPath, data: wiritngData.kujiPhotoData)
+                    diary.scencePhotoPath = wiritngData.kujiPhotoPath
                     
-                    if self.KujiImage.image != nil {
-                        //let scenceData = UIImagePNGRepresentation(scencePhoto)
-                        //ちゃんと画像名をつけてあげる
-                        let kujiPhotoName = String(diary.id) + "/Kuji.png"//追加
-                        let kujiPhotoPath = FileManager.default.documentPath(fileName: kujiPhotoName)
-                        //URLを表示するStringをRealmで保存
-                        diary.kujiPhotoPath = kujiPhotoPath
-                        // 画像をサンドボックスに保存
-                        let kujiPhotoURL = URL(string: kujiPhotoPath)
-                        let kujiData = try? Data(contentsOf: kujiPhotoURL!)
-                        FileManager.default.createFile(atPath: kujiPhotoPath, contents: kujiData, attributes: nil)
-                        //URLを表示するStringをRealmで保存
-                        diary.kujiPhotoPath = kujiPhotoPath
-                    }
-                    
-                    if self.SyuinImage.image != nil {
-                        //let scenceData = UIImagePNGRepresentation(scencePhoto)
-                        //ちゃんと画像名をつけてあげる
-                        let syuinPhotoName = String(diary.id) + "/Kuji.png"//追加
-                        let syuinPhotoPath = FileManager.default.documentPath(fileName: syuinPhotoName)
-                        // 画像をサンドボックスに保存
-                        let syuinPhotoURL = URL(string: syuinPhotoPath)
-                        //FileManager.default.documentURL(syuinPhotoName)
-                        let scenceData = try? Data(contentsOf: syuinPhotoURL!)
-                        //FileManager.default.writeImage(url: syuinPhotoURL!, image: self.SyuinImage.image!)
-                        FileManager.default.createFile(atPath: syuinPhotoPath, contents: scenceData, attributes: nil)
-                        //URLを表示するStringをRealmで保存
-                        diary.syuinPhotoPath = syuinPhotoPath
-                    }
+                    wiritngData.kujiPhotoName = "/"+"\(diary.id)"+"/Syuin.png"
+                    _ = FileManager.default.writeImage(url: wiritngData.syuinPhotoURL!, image: self.SyuinImage.image!)
+                    _ = FileManager.default.createFile(atPath: wiritngData.syuinPhotoPath, data: wiritngData.syuinPhotoData)
+                    diary.scencePhotoPath = wiritngData.syuinPhotoPath
                 }
                 
                //realm.deleteAll() //テスト用。データベースをクリア

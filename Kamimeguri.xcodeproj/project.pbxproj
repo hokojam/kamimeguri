@@ -18,6 +18,7 @@
 		36DB052721062CAF00C44FD8 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DB052621062CAF00C44FD8 /* Bundle+.swift */; };
 		4F03A12F20F60B5800DF8B8F /* mapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F03A12E20F60B5700DF8B8F /* mapStyle.json */; };
 		4F0CD97C20E2698800B59692 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0CD97B20E2698800B59692 /* UIColor+.swift */; };
+		4F143CC62118355F00773145 /* writingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F143CC52118355F00773145 /* writingData.swift */; };
 		4F213CEE20E10877005565A6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F213CED20E10877005565A6 /* MapViewController.swift */; };
 		4F2998F520EA4E8C00A4E157 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2998F420EA4E8C00A4E157 /* TabBarController.swift */; };
 		4F49C68920EE833000156CFB /* CalendarDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F49C68820EE833000156CFB /* CalendarDate.swift */; };
@@ -66,6 +67,7 @@
 		36DB052621062CAF00C44FD8 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		4F03A12E20F60B5700DF8B8F /* mapStyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mapStyle.json; sourceTree = "<group>"; };
 		4F0CD97B20E2698800B59692 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		4F143CC52118355F00773145 /* writingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = writingData.swift; sourceTree = "<group>"; };
 		4F213CED20E10877005565A6 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		4F2998F420EA4E8C00A4E157 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4F49C68820EE833000156CFB /* CalendarDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				4F9E1C8B20FC3B6B006047C1 /* WritingViewController.swift */,
+				4F143CC52118355F00773145 /* writingData.swift */,
 				4F787E2E20EE33010068B061 /* Camera.swift */,
 				36B7C6D121060561004C4B28 /* Cell */,
 			);
@@ -451,6 +454,7 @@
 				36B7C6E22106192C004C4B28 /* PostDetailTitleCell.swift in Sources */,
 				36B7C6E42106193E004C4B28 /* PostDetailImageCell.swift in Sources */,
 				36DB052721062CAF00C44FD8 /* Bundle+.swift in Sources */,
+				4F143CC62118355F00773145 /* writingData.swift in Sources */,
 				4FF007BA20E100C800B7C922 /* AppDelegate.swift in Sources */,
 				7AE565402115A39000654FF2 /* FileManager+.swift in Sources */,
 				4FB218B9211177AE0093AB91 /* PostDetailTextCell.swift in Sources */,
