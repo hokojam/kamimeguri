@@ -23,7 +23,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
     let realm = try! Realm()
     //private var dataArray: [LogData] = []
     var diaryArray: Results<Diary>!//!がないと、Class 'WritingViewController' has no initializers
-
+    
     
     var nowpostDate = UILabel()
     
@@ -200,63 +200,72 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     latestId += 1
                     diary.id = latestId
                     
-                    let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/" +  "\(diary.id)"
+                    //let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/" +  "\(diary.id)"
                     
-                    do {
-                        // ディレクトリが存在するかどうかの判定
-                        if !FileManager.default.fileExists(atPath: path) {
-                            
-                            // ディレクトリが無い場合ディレクトリを作成する
-                            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false , attributes: nil)
-                        }
-                    } catch {
-                    }
-//                    if !FileManager.default.fileExists(atPath: fileURL.path) {
-//                        do {
-//                            try UIImagePNGRepresentation(imageView.image!)!.write(to: fileURL)
-//                            print("Image Added Successfully")
-                     let wiritngData = WiringData()
-                    wiritngData.scencePhotoName = "/"+"\(latestId)"+"/Scence.png"
+                    //                    do {
+                    //                        // ディレクトリが存在するかどうかの判定
+                    //                        if !FileManager.default.fileExists(atPath: path) {
+                    //
+                    //                            // ディレクトリが無い場合ディレクトリを作成する
+                    //                            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false , attributes: nil)
+                    //                        }
+                    //                    } catch {
+                    //                    }
+                    
+                    let wiritngData = WiringData(id:latestId)
                     if let ScenceImgSavetoFile = UIImagePNGRepresentation(self.ScenceImg.image!),
                         !FileManager.default.fileExists(atPath: wiritngData.scencePhotoPath){
-                            do {
-                                // writes the image data to disk
-                                try ScenceImgSavetoFile.write(to: wiritngData.scencePhotoURL!)
-                                print("file saved")
-                            } catch {
-                                print("error saving file:", error)
-                           }
-                       }
-                    diary.kujiPhotoPath = wiritngData.kujiPhotoPath
+                        do {
+                            // writes the image data to disk
+                            try ScenceImgSavetoFile.write(to: wiritngData.scencePhotoURL!)
+                            print("file saved")
+                        } catch {
+                            print("error saving file:", error)
+                        }
+                    }
                     
-                    wiritngData.kujiPhotoName = "/"+"\(latestId)"+"/Kuji.png"
-                    _ = FileManager.default.writeImage(url: wiritngData.kujiPhotoURL!, image: self.KujiImage.image!)
-                    _ = FileManager.default.createFile(atPath: wiritngData.kujiPhotoPath, data: wiritngData.kujiPhotoData)
-                    diary.scencePhotoPath = wiritngData.kujiPhotoPath
+                    if let KujiImgSavetoFile = UIImagePNGRepresentation(self.KujiImage.image!),
+                        !FileManager.default.fileExists(atPath: wiritngData.kujiPhotoPath){
+                        do {
+                            // writes the image data to disk
+                            try KujiImgSavetoFile.write(to: wiritngData.kujiPhotoURL!)
+                            print("file saved")
+                        } catch {
+                            print("error saving file:", error)
+                        }
+                    }
                     
-                    wiritngData.kujiPhotoName = "/"+"\(diary.id)"+"/Syuin.png"
-                    _ = FileManager.default.writeImage(url: wiritngData.syuinPhotoURL!, image: self.SyuinImage.image!)
-                    _ = FileManager.default.createFile(atPath: wiritngData.syuinPhotoPath, data: wiritngData.syuinPhotoData)
-                    diary.scencePhotoPath = wiritngData.syuinPhotoPath
+                    
+                    if let SyuinImgSavetoFile = UIImagePNGRepresentation(self.SyuinImage.image!),
+                        !FileManager.default.fileExists(atPath: wiritngData.syuinPhotoPath){
+                        do {
+                            // writes the image data to disk
+                            try SyuinImgSavetoFile.write(to: wiritngData.syuinPhotoURL!)
+                            print("file saved")
+                        } catch {
+                            print("error saving file:", error)
+                        }
+                      }
+                    //realm.deleteAll() //テスト用。データベースをクリア
+                    realm.add(diary, update: true)
                 }
                 
-               //realm.deleteAll() //テスト用。データベースをクリア
-               realm.add(diary, update: true)
             }
-            
         }
-        catch{
-            let alert = UIAlertController(title:"Add New TO DO item",message:"",
-                                          preferredStyle: .alert)
-            //alert.addAction(action)
-            present(alert, animated: true, completion:nil)
+                
+            catch {
+                let alert = UIAlertController(title:"Add New TO DO item",message:"",
+                                              preferredStyle: .alert)
+                //alert.addAction(action)
+                present(alert, animated: true, completion:nil)
+            }
+            //
         }
-        //
+        
+        func loadItems(){
+            diaryArray = realm.objects(Diary.self)
+            //Cannot assign value of type 'Results<Diary>' to type '[Diary]'
+            LogViewController().PostList.reloadData()
+        }
     }
-    
-    func loadItems(){
-        diaryArray = realm.objects(Diary.self)
-        //Cannot assign value of type 'Results<Diary>' to type '[Diary]'
-        LogViewController().PostList.reloadData()
-    }
-}
+

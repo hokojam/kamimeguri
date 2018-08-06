@@ -23,19 +23,19 @@ class WiringData{
    var kujiPhotoURL : URL?
    var kujiPhotoData : Data?
     
-    init(){//なんでここでinit?
+    init(id:Int){//なんでここでinit?
     //let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    scencePhotoName = "/Scence.png"
+    scencePhotoName = "/" + "\(id)" + "/Scence.png"
     scencePhotoPath = FileManager.default.documentPath(fileName: scencePhotoName)
     scencePhotoURL  = URL(string: scencePhotoPath)
     scencePhotoData = try? Data(contentsOf: scencePhotoURL!)
     
-    syuinPhotoName = "/Syuin.png"
+    syuinPhotoName =  "/" + "\(id)" + "/Syuin.png"
     syuinPhotoPath = FileManager.default.documentPath(fileName: syuinPhotoName)
     syuinPhotoURL  = URL(string: syuinPhotoPath)
     syuinPhotoData = try? Data(contentsOf: syuinPhotoURL!)
     
-    kujiPhotoName = "/Syuin.png"
+    kujiPhotoName = "/" + "\(id)" + "/Syuin.png"
     kujiPhotoPath = FileManager.default.documentPath(fileName: syuinPhotoName)
     kujiPhotoURL  = URL(string: syuinPhotoPath)
     kujiPhotoData = try? Data(contentsOf: syuinPhotoURL!)
