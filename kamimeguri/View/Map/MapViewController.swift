@@ -33,8 +33,10 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
     }
     var locationManager: CLLocationManager!
     
-    let latitudeNowLabel = UILabel()
-    let longtitudeNowLabel = UILabel()
+    var latitudeNow: Double!
+    var longtitudeNow: Double!
+    var templeName: String!
+    var templeAddress: String!
 
     //------------------地図を表示  start----------------------------------
     //最初からあるメソッド
@@ -81,7 +83,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         //------------------地図を表示  end----------------------------------
         
         //------------------通信、hotokami databaseとつなぐ
-        let myUrl = URL(string: "http://192.168.100.138/kamimeguriServer/kamimeguriMap.php");
+        let myUrl = URL(string: "http://192.168.3.13/kamimeguriServer/kamimeguriMap.php");
         
         var request = URLRequest(url:myUrl!)
         
@@ -108,12 +110,10 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
                 
                 if let parseJSON = json {
                     print(parseJSON)
-                    var templeName: String
-                    var templeAddress: String
-                    templeName = (parseJSON["templeNameNow"] as? String)!
-                    templeAddress = (parseJSON["templeAddressNow"] as? String)!
-                    print("今ここにいるよ: \(templeName)")
-                    print("住所はここよ: \(templeAddress)")
+                    self.templeName = (parseJSON["templeNameNow"] as? String)!
+                    self.templeAddress = (parseJSON["templeAddressNow"] as? String)!
+                    print("今ここにいるよ: \(self.templeName)")
+                    print("住所はここよ: \(self.templeAddress)")
                 }
             } catch {
                 print(error)
@@ -159,8 +159,11 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         let position = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!) //need to be unwrapped (read one more time)
         let marker = GMSMarker(position: position)
        
-        marker.title = "東京大神宮"//templeNameNow
-        marker.snippet = "東京都千代田区富士見２丁目４−１" //templeAddressNow
+        latitudeNow = manager.location!.coordinate.latitude
+        longtitudeNow = manager.location!.coordinate.latitude
+        
+        marker.title = self.templeName
+        marker.snippet = self.templeAddress
         //marker.appearAnimation = kGMSMarkerAnimationPop
         marker.icon = UIImage(named: "mapMarker_shrine")//
         marker.isFlat = true
@@ -168,10 +171,8 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         myMapView.selectedMarker = marker
         
         
-        let latitudeNow: Double = manager.location!.coordinate.latitude
-        let longtitudeNow: Double = manager.location!.coordinate.latitude
-        latitudeNowLabel.text = String(latitudeNow)
-        longtitudeNowLabel.text = String(longtitudeNow)
+        
+      
         //location
         self.locationManager.stopUpdatingLocation()//??調べる
     }
