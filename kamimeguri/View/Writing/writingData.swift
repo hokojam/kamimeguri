@@ -23,11 +23,28 @@ class WiringData{
    var kujiPhotoURL : URL?
    var kujiPhotoData : Data?
     
+    
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    private func saveImage(data:Data, id:Int) -> String {
+        let imageName = "\(id)" + ".jpeg"
+        let filename = getDocumentsDirectory().appendingPathComponent(imageName)
+        try? data.write(to: filename)
+        return imageName
+    }
+    
     init(id:Int){//なんでここでinit?
     //let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     scencePhotoName = "/" + "\(id)" + "/Scence.png"
     scencePhotoPath = FileManager.default.documentPath(fileName: scencePhotoName)
-    scencePhotoURL  = URL(string: scencePhotoPath)
+    scencePhotoURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(scencePhotoName)")
+        //
+        
+    //scencePhotoURL  = URL(string: scencePhotoPath)
     scencePhotoData = try? Data(contentsOf: scencePhotoURL!)
     
     syuinPhotoName =  "/" + "\(id)" + "/Syuin.png"
@@ -40,6 +57,12 @@ class WiringData{
     kujiPhotoURL  = URL(string: syuinPhotoPath)
     kujiPhotoData = try? Data(contentsOf: syuinPhotoURL!)
 
+//        private func saveImage(data:Data, id:Int) -> String {
+//            let imageName = "\(id)" + ".jpeg"
+//            let filename = getDocumentsDirectory().appendingPathComponent(imageName)
+//            try? data.write(to: filename)
+//            return imageName
+//        }
 }
 
 }

@@ -21,7 +21,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
     //databaseのための追加
     
     let realm = try! Realm()
-    //private var dataArray: [LogData] = []
     var diaryArray: Results<Diary>!//!がないと、Class 'WritingViewController' has no initializers
     
     
@@ -176,11 +175,12 @@ class WritingViewController: UIViewController, UITextViewDelegate
         newDiary.dateInfo = Date()//postDateFormatter.date(from: postDate)!
         newDiary.date = nowpostDate.text!
         
-        
         self.saveItems(diary: newDiary)
+        self.loadItems()
+        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         self.dismiss(animated: true, completion: nil)
-        //LogViewController().PostList.reloadData()
+        
     }
     
     private func getDocumentsDirectory() -> URL {
@@ -191,7 +191,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
     
     
     func saveItems(diary: Diary){
-        
         do{
             try realm.write{
                 var latestId = 0
@@ -199,73 +198,52 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     latestId = (realm.objects(Diary.self).max(ofProperty: "id") as Int?)!//.max(ofProperty: "id")がわかりません
                     latestId += 1
                     diary.id = latestId
-                    
-                    //let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/" +  "\(diary.id)"
-                    
-                    //                    do {
-                    //                        // ディレクトリが存在するかどうかの判定
-                    //                        if !FileManager.default.fileExists(atPath: path) {
-                    //
-                    //                            // ディレクトリが無い場合ディレクトリを作成する
-                    //                            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false , attributes: nil)
-                    //                        }
-                    //                    } catch {
-                    //                    }
-                    
-                    let wiritngData = WiringData(id:latestId)
-                    if let ScenceImgSavetoFile = UIImagePNGRepresentation(self.ScenceImg.image!),
-                        !FileManager.default.fileExists(atPath: wiritngData.scencePhotoPath){
-                        do {
-                            // writes the image data to disk
-                            try ScenceImgSavetoFile.write(to: wiritngData.scencePhotoURL!)
-                            print("file saved")
-                        } catch {
-                            print("error saving file:", error)
-                        }
-                    }
-                    
-                    if let KujiImgSavetoFile = UIImagePNGRepresentation(self.KujiImage.image!),
-                        !FileManager.default.fileExists(atPath: wiritngData.kujiPhotoPath){
-                        do {
-                            // writes the image data to disk
-                            try KujiImgSavetoFile.write(to: wiritngData.kujiPhotoURL!)
-                            print("file saved")
-                        } catch {
-                            print("error saving file:", error)
-                        }
-                    }
-                    
-                    
-                    if let SyuinImgSavetoFile = UIImagePNGRepresentation(self.SyuinImage.image!),
-                        !FileManager.default.fileExists(atPath: wiritngData.syuinPhotoPath){
-                        do {
-                            // writes the image data to disk
-                            try SyuinImgSavetoFile.write(to: wiritngData.syuinPhotoURL!)
-                            print("file saved")
-                        } catch {
-                            print("error saving file:", error)
-                        }
-                      }
-                    //realm.deleteAll() //テスト用。データベースをクリア
-                    realm.add(diary, update: true)
+                }  else if (true == realm.isEmpty) {
+                    diary.id = latestId
                 }
                 
-            }
-        }
                 
-            catch {
-                let alert = UIAlertController(title:"Add New TO DO item",message:"",
-                                              preferredStyle: .alert)
-                //alert.addAction(action)
-                present(alert, animated: true, completion:nil)
+                let wiritngData = WiringData(id:latestId)
+                if let ScenceImgSavetoFile = UIImagePNGRepresentation(self.ScenceImg.image!),
+                    !FileManager.default.fileExists(atPath: wiritngData.scencePhotoPath){
+                    // writes the image data to disk
+                    try! ScenceImgSavetoFile.write(to: wiritngData.scencePhotoURL!)
+                    diary.scencePhotoPath = wiritngData.scencePhotoPath
+                    return
+                }
+    
+                if let KujiImgSavetoFile = UIImagePNGRepresentation(self.KujiImage.image!),
+                    !FileManager.default.fileExists(atPath: wiritngData.kujiPhotoPath){
+                     try! KujiImgSavetoFile.write(to: wiritngData.kujiPhotoURL!)
+                    diary.kujiPhotoPath = wiritngData.kujiPhotoPath
+                    return
+                }
+                
+                
+                if let SyuinImgSavetoFile = UIImagePNGRepresentation(self.SyuinImage.image!),
+                    !FileManager.default.fileExists(atPath: wiritngData.syuinPhotoPath){
+                        try! SyuinImgSavetoFile.write(to: wiritngData.syuinPhotoURL!)
+                        diary.syuinPhotoPath = wiritngData.syuinPhotoPath
+                        return
+                    }
+                //realm.deleteAll() //テスト用。データベースをクリア
+                realm.add(diary, update: true)
             }
-            //
+            
         }
-        
-        func loadItems(){
-            diaryArray = realm.objects(Diary.self)
-            //Cannot assign value of type 'Results<Diary>' to type '[Diary]'
-            LogViewController().PostList.reloadData()
+            
+        catch {
+            let alert = UIAlertController(title:"Add New TO DO item",message:"",
+                                          preferredStyle: .alert)
+            //alert.addAction(action)
+            present(alert, animated: true, completion:nil)
         }
     }
+    
+    func loadItems(){
+        diaryArray = realm.objects(Diary.self)
+        //Cannot assign value of type 'Results<Diary>' to type '[Diary]'
+        LogViewController().PostList.reloadData()
+    }
+}
 

@@ -32,7 +32,7 @@ class LogViewController:  UIViewController {
         let diaryObjects = realm.objects(Diary.self)
         for diaryObject in diaryObjects{
             let logData =  LogData(diary: diaryObject)
-            dataArray.insert(logData, at:0)
+            dataArray.insert(logData!, at:0)
             
             try! realm.write {
                 realm.add(diaryObject, update: true)

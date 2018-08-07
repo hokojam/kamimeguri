@@ -34,26 +34,49 @@ class LogData { //データを受け入れるお皿です,どんな値を入れ�
         return postYear + postDate
     }
     
-    init(diary:Diary) {//なんでここでinit?
+//
+//  func findImage(imageName:String) -> UIImage? {
+//            let fileManager = FileManager.default
+//            let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent(imageName)
+//            if fileManager.fileExists(atPath: imagePath){
+//                return UIImage(contentsOfFile: imagePath)
+//            }
+//            return nil
+//        }
+//
+//    private func getDirectoryPath() -> String {
+//        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+//        let documentsDirectory = paths[0]
+//        return documentsDirectory
+//    }
+     let fileManager = FileManager.default
+    init?(diary:Diary) {//なんでここでinit?
         id = diary.id
         //path -> data
         //風景写真
+       
         if let scencePhotoPath = diary.scencePhotoPath{
-            self.scencePhoto = UIImage(contentsOfFile: scencePhotoPath)
-            //let logScenceImage = FileManager.default.getImage(atPath: scencePhotoPath)
-            //self.scencePhoto = logScenceImage
+            if fileManager.fileExists(atPath: scencePhotoPath){
+               self.scencePhoto = UIImage(contentsOfFile: scencePhotoPath)
+            }else{
+                return nil
+            }
         }
         //御朱印写真
         if let syuinPhotoPath = diary.syuinPhotoPath{
+            if fileManager.fileExists(atPath: syuinPhotoPath){
             self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
-            //let logSyuinImage = FileManager.default.getImage(atPath: syuinPhotoPath)
-            //self.syuinPhoto = logSyuinImage
+            }else{
+                return nil
+            }
         }
         //くじ写真
-        if let kujiPhotoPath = diary.syuinPhotoPath{
-            self.kujiPhoto = UIImage(contentsOfFile: kujiPhotoPath)
-            //let logKujiImage = FileManager.default.getImage(atPath: kujiPhotoPath)
-            //self.kujiPhoto = logKujiImage
+        if let syuinPhotoPath = diary.syuinPhotoPath{
+            if fileManager.fileExists(atPath: syuinPhotoPath){
+                self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
+            }else{
+                return nil
+            }
         }
         
         let PostYearInfo = DateFormatter()
@@ -75,5 +98,6 @@ class LogData { //データを受け入れるお皿です,どんな値を入れ�
         postTempleAddress = diary.postTempleAddress
         
     }
+
     
 }
