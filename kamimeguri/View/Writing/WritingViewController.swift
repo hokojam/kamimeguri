@@ -235,6 +235,8 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     //FileManager.default.createFile(atPath: writingData.scencePhotoPath, contents: ScenceImgSavetoFile, attributes: nil)
                     //PathをRealmに保存
                     diary.scencePhotoPath = newScencePhotoPath
+                }else{
+                    print ("画像がないですよ")
                 }
     
                 if let KujiImgSavetoFile = UIImagePNGRepresentation(self.KujiImage.image!)
@@ -249,6 +251,8 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     FileManager.default.createFile(atPath: writingData.kujiPhotoPath, contents: KujiImgSavetoFile, attributes: nil)
                     //PathをRealmに保存
                     diary.kujiPhotoPath = newKujiPhotoPath
+                }else{
+                    print ("画像がないですよ")
                 }
               
                 
@@ -265,7 +269,9 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     //FileManager.default.createFile(atPath: writingData.SyuinPhotoPath, contents: SyuinImgSavetoFile, attributes:nil)
                     //PathをRealmに保存
                     diary.syuinPhotoPath = newSyuinPhotoPath
-                    }
+                }else{
+                    print ("画像がないですよ")
+                }
                 //realm.deleteAll() //テスト用。データベースをクリア
                 //writingData.saveImage(data:)
                 realm.add(diary, update: true)
@@ -283,7 +289,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
 
     func loadItems(){
         diaryArray = realm.objects(Diary.self)
-        LogViewController().PostList.reloadData()
+        //LogViewController().PostList.reloadData()
     }
 }
 

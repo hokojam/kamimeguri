@@ -52,19 +52,19 @@ class WritingData{
     init(){//なんでここでinit?
     //let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     //scencePhotoName = "/Scence.png"
-    scencePhotoPath = "\(String(describing: path)) + \(scencePhotoName)"
+    scencePhotoPath = "\(String(describing: path)) + \(scencePhotoName!)"
         //FileManager.default.documentPath(fileName: scencePhotoName)
     scencePhotoURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(scencePhotoName)")
     //scencePhotoData = try? Data(contentsOf: scencePhotoURL!)
         
     //syuinPhotoName = "/Syuin.png"
-    syuinPhotoPath = "\(String(describing: path)) + \(syuinPhotoName)"
+    syuinPhotoPath = "\(String(describing: path)) + \(syuinPhotoName!)"
     syuinPhotoURL  = URL(string: syuinPhotoPath)
     //syuinPhotoData = try? Data(contentsOf: syuinPhotoURL!)
         
     
     //kujiPhotoName = "/Kuji.png"
-    kujiPhotoPath = "\(String(describing: path)) + \(kujiPhotoName)"
+    kujiPhotoPath = "\(String(describing: path)) + \(kujiPhotoName!)"
     kujiPhotoURL  = URL(string: syuinPhotoPath)
     //kujiPhotoData = try? Data(contentsOf: syuinPhotoURL!)
     }
@@ -80,12 +80,13 @@ class WritingData{
     }
     
     func getkujiPhotoName(id:Int) -> String{
-        kujiPhotoName = "/Syuin.png"
+        kujiPhotoName = "/Kuji.png"
         return kujiPhotoName
     }
     
-    func getImagePath(photoname:String) ->String{
-        let imagePath = "\(String(describing: path)) + \(kujiPhotoName)"
+    func getImagePath(photoname:String!) ->String{
+        guard let path = path, let photoname = photoname else {return ""}
+        let imagePath = "\(path)” + ”\(photoname)"
         return imagePath
     }
     
@@ -93,8 +94,8 @@ class WritingData{
         let photoURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(photoname)")
         return photoURL
     }
+    
     func saveImage(data:Data, photoURL:URL) -> Void {
         try? data.write(to: photoURL)
     }
-
 }
