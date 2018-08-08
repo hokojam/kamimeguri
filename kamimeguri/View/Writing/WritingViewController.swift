@@ -22,9 +22,12 @@ class WritingViewController: UIViewController, UITextViewDelegate
     
     let realm = try! Realm()
     var diaryArray: Results<Diary>!//!がないと、Class 'WritingViewController' has no initializers
+    private let fileManager = FileManager.default
+    //private let imageManager = ImageFileManager.sharedInstance
     
     
     var nowpostDate = UILabel()
+    
     
     @IBOutlet weak var TempleName: UILabel!
     
@@ -48,14 +51,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
     @IBOutlet weak var KujiBtn: UIButton!
     @IBOutlet weak var KujiImage: UIImageView!
     @IBOutlet weak var DiaryText: UITextView!
-    
-    @IBAction func ScenceBtnTapped(_ sender: UIButton) {
-        CameraHandler.shared.showActionSheet(vc: self)
-        CameraHandler.shared.imagePickedBlock = { (image) in
-            self.ScenceImg.image = image
-            self.ScenceBtn.isHidden = true
-        }
-    }
     
     //以下textFieldのfunc
     // 編集中のテキストフィールド
@@ -90,6 +85,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
         
         DiaryText.placeholder = "お参りの気持ちはどうですか?"
         DiaryText.delegate = self
+        
         
         // スワイプでスクロールさせたならばキーボードを下げる
         WritingScroll.keyboardDismissMode = .onDrag
@@ -131,6 +127,13 @@ class WritingViewController: UIViewController, UITextViewDelegate
         DiaryText.resignFirstResponder()
     }
     
+    @IBAction func ScenceBtnTapped(_ sender: UIButton) {
+        CameraHandler.shared.showActionSheet(vc: self)
+        CameraHandler.shared.imagePickedBlock = { (image) in
+            self.ScenceImg.image = image
+            self.ScenceBtn.isHidden = true
+        }
+    }
     
     @IBAction func SyuinBtnTapped(_ sender: UIButton) {
         CameraHandler.shared.showActionSheet(vc: self)
@@ -202,31 +205,69 @@ class WritingViewController: UIViewController, UITextViewDelegate
                     diary.id = latestId
                 }
                 
+                let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/UserPhoto"
+                //=> /var/mobile/Containers/Data/Application/XXXXX-XXXX-XXXX-XXXXXX/Library/Caches/UserPhoto
                 
-                let wiritngData = WiringData(id:latestId)
-                if let ScenceImgSavetoFile = UIImagePNGRepresentation(self.ScenceImg.image!),
-                    !FileManager.default.fileExists(atPath: wiritngData.scencePhotoPath){
-                    // writes the image data to disk
-                    try! ScenceImgSavetoFile.write(to: wiritngData.scencePhotoURL!)
-                    diary.scencePhotoPath = wiritngData.scencePhotoPath
-                    return
+                do {
+                    
+                    // ディレクトリが存在するかどうかの判定
+                    if !FileManager.default.fileExists(atPath: path) {
+                        
+                        // ディレクトリが無い場合ディレクトリを作成する
+                        try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false , attributes: nil)
+                    }
+                    
+                } catch {
+                    // エラー処理
+                }
+                
+                let writingData = WritingData()
+                //let newName:String = "/" + String(latestId)
+                if let ScenceImgSavetoFile = UIImagePNGRepresentation(self.ScenceImg.image!)
+                  {
+                    //ファイル名を改めて作る
+                    let newscencePhotoName =  writingData.getscencePhotoName(id:latestId)
+                    let newscencePhotoURL = writingData.getImageURL(photoname:newscencePhotoName)
+                    //画像を携帯の中で保存
+                    writingData.saveImage(data:ScenceImgSavetoFile,photoURL:newscencePhotoURL)//どう書き出すか考えよう
+                    let newScencePhotoPath = writingData.getImagePath(photoname:newscencePhotoName)
+                    // ファイルに保存。どちらが良い?
+                    //FileManager.default.createFile(atPath: writingData.scencePhotoPath, contents: ScenceImgSavetoFile, attributes: nil)
+                    //PathをRealmに保存
+                    diary.scencePhotoPath = newScencePhotoPath
                 }
     
-                if let KujiImgSavetoFile = UIImagePNGRepresentation(self.KujiImage.image!),
-                    !FileManager.default.fileExists(atPath: wiritngData.kujiPhotoPath){
-                     try! KujiImgSavetoFile.write(to: wiritngData.kujiPhotoURL!)
-                    diary.kujiPhotoPath = wiritngData.kujiPhotoPath
-                    return
+                if let KujiImgSavetoFile = UIImagePNGRepresentation(self.KujiImage.image!)
+                   {
+                    //ファイル名を改めて作る
+                    let newKujiPhotoName =  writingData.getkujiPhotoName(id:latestId)
+                    let newKujiPhotoURL = writingData.getImageURL(photoname:newKujiPhotoName)
+                    //画像を携帯の中で保存
+                    writingData.saveImage(data:KujiImgSavetoFile,photoURL:newKujiPhotoURL)//どう書き出すか考えよう
+                    let newKujiPhotoPath = writingData.getImagePath(photoname:newKujiPhotoName)
+                    // ファイルに保存。どちらが良い?
+                    FileManager.default.createFile(atPath: writingData.kujiPhotoPath, contents: KujiImgSavetoFile, attributes: nil)
+                    //PathをRealmに保存
+                    diary.kujiPhotoPath = newKujiPhotoPath
                 }
+              
                 
-                
-                if let SyuinImgSavetoFile = UIImagePNGRepresentation(self.SyuinImage.image!),
-                    !FileManager.default.fileExists(atPath: wiritngData.syuinPhotoPath){
-                        try! SyuinImgSavetoFile.write(to: wiritngData.syuinPhotoURL!)
-                        diary.syuinPhotoPath = wiritngData.syuinPhotoPath
-                        return
+                if let SyuinImgSavetoFile = UIImagePNGRepresentation(self.SyuinImage.image!)
+                    //,!FileManager.default.fileExists(atPath: writingData.syuinPhotoPath)
+                {
+                    //ファイル名を改めて作る
+                    let newSyuinPhotoName =  writingData.getsyuinPhotoName(id:latestId)
+                    let newSyuinPhotoURL = writingData.getImageURL(photoname:newSyuinPhotoName)
+                    //画像を携帯の中で保存
+                    writingData.saveImage(data:SyuinImgSavetoFile,photoURL:newSyuinPhotoURL)//どう書き出すか考えよう
+                    let newSyuinPhotoPath = writingData.getImagePath(photoname:newSyuinPhotoName)
+                    // ファイルに保存。どちらが良い?
+                    //FileManager.default.createFile(atPath: writingData.SyuinPhotoPath, contents: SyuinImgSavetoFile, attributes:nil)
+                    //PathをRealmに保存
+                    diary.syuinPhotoPath = newSyuinPhotoPath
                     }
                 //realm.deleteAll() //テスト用。データベースをクリア
+                //writingData.saveImage(data:)
                 realm.add(diary, update: true)
             }
             
@@ -239,10 +280,9 @@ class WritingViewController: UIViewController, UITextViewDelegate
             present(alert, animated: true, completion:nil)
         }
     }
-    
+
     func loadItems(){
         diaryArray = realm.objects(Diary.self)
-        //Cannot assign value of type 'Results<Diary>' to type '[Diary]'
         LogViewController().PostList.reloadData()
     }
 }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class WiringData{
+class WritingData{
     var scencePhotoName :String!
     var scencePhotoPath :String!
     var scencePhotoURL : URL?
@@ -23,46 +23,78 @@ class WiringData{
    var kujiPhotoURL : URL?
    var kujiPhotoData : Data?
     
-    
-    private func getDocumentsDirectory() -> URL {
+    func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
     
-    private func saveImage(data:Data, id:Int) -> String {
-        let imageName = "\(id)" + ".jpeg"
-        let filename = getDocumentsDirectory().appendingPathComponent(imageName)
-        try? data.write(to: filename)
-        return imageName
+    func initPath()->String{
+        //画像保存パスを設定
+        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/UserPhoto"
+        //=> /var/mobile/Containers/Data/Application/XXXXX-XXXX-XXXX-XXXXXX/Library/Caches/UserPhoto
+        do {
+        // ディレクトリが存在するかどうかの判定
+        if !FileManager.default.fileExists(atPath: path) {
+        // ディレクトリが無い場合ディレクトリを作成する
+        try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false , attributes: nil)
+        }
+        
+        } catch {
+        // エラー処理
+        }
+        return path
     }
     
-    init(id:Int){//なんでここでinit?
-    //let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    scencePhotoName = "/" + "\(id)" + "/Scence.png"
-    scencePhotoPath = FileManager.default.documentPath(fileName: scencePhotoName)
-    scencePhotoURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(scencePhotoName)")
-        //
-        
-    //scencePhotoURL  = URL(string: scencePhotoPath)
-    scencePhotoData = try? Data(contentsOf: scencePhotoURL!)
-    
-    syuinPhotoName =  "/" + "\(id)" + "/Syuin.png"
-    syuinPhotoPath = FileManager.default.documentPath(fileName: syuinPhotoName)
-    syuinPhotoURL  = URL(string: syuinPhotoPath)
-    syuinPhotoData = try? Data(contentsOf: syuinPhotoURL!)
-    
-    kujiPhotoName = "/" + "\(id)" + "/Syuin.png"
-    kujiPhotoPath = FileManager.default.documentPath(fileName: syuinPhotoName)
-    kujiPhotoURL  = URL(string: syuinPhotoPath)
-    kujiPhotoData = try? Data(contentsOf: syuinPhotoURL!)
+ 
 
-//        private func saveImage(data:Data, id:Int) -> String {
-//            let imageName = "\(id)" + ".jpeg"
-//            let filename = getDocumentsDirectory().appendingPathComponent(imageName)
-//            try? data.write(to: filename)
-//            return imageName
-//        }
-}
+    
+    init(){//なんでここでinit?
+    //let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    //scencePhotoName = "/Scence.png"
+    scencePhotoPath = "\(String(describing: path)) + \(scencePhotoName)"
+        //FileManager.default.documentPath(fileName: scencePhotoName)
+    scencePhotoURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(scencePhotoName)")
+    //scencePhotoData = try? Data(contentsOf: scencePhotoURL!)
+        
+    //syuinPhotoName = "/Syuin.png"
+    syuinPhotoPath = "\(String(describing: path)) + \(syuinPhotoName)"
+    syuinPhotoURL  = URL(string: syuinPhotoPath)
+    //syuinPhotoData = try? Data(contentsOf: syuinPhotoURL!)
+        
+    
+    //kujiPhotoName = "/Kuji.png"
+    kujiPhotoPath = "\(String(describing: path)) + \(kujiPhotoName)"
+    kujiPhotoURL  = URL(string: syuinPhotoPath)
+    //kujiPhotoData = try? Data(contentsOf: syuinPhotoURL!)
+    }
+    
+    func getscencePhotoName(id:Int) -> String{
+        scencePhotoName = "\(id)" + "/Scence.png"
+        return scencePhotoName
+    }
+    
+    func getsyuinPhotoName(id:Int)  -> String{
+        syuinPhotoName = "/Syuin.png"
+        return syuinPhotoName
+    }
+    
+    func getkujiPhotoName(id:Int) -> String{
+        kujiPhotoName = "/Syuin.png"
+        return kujiPhotoName
+    }
+    
+    func getImagePath(photoname:String) ->String{
+        let imagePath = "\(String(describing: path)) + \(kujiPhotoName)"
+        return imagePath
+    }
+    
+    func getImageURL(photoname:String) ->URL{
+        let photoURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(photoname)")
+        return photoURL
+    }
+    func saveImage(data:Data, photoURL:URL) -> Void {
+        try? data.write(to: photoURL)
+    }
 
 }
