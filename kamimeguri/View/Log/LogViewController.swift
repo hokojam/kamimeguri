@@ -21,27 +21,61 @@ class LogViewController:  UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         createData()
+        //updateList()
         self.PostList.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
+//    private let log = Logger(logPlace: DiaryRepository.self)
+//    private var realm = try! Realm()
+//    private let fileManager = FileManager.default
+//    private let imageManager = ImageFileManager.sharedInstance
+//
+//    private override init() {
+//        super.init()
+//    }
+    func getAllList() -> Results<Diary> {
+        let diarys:Results<Diary> = realm.objects(Diary.self)
+        return diarys
+    }
+
+//    func updateList() {
+//        if self.realm.objects(Diary.self).count == 0 {
+//
+//            let list = Diary()
+////            list.id = "000001"
+////            list.text = "lista de prueba"
+//
+//            // Add to the Realm inside a transaction
+//            try! self.realm.write {
+//                self.realm.add(list)
+//            }
+//
+//        }
+//        if diaryArray == nil, let firstDiary = self.realm.objects(Diary.self).first {
+//            dataArray = list //diaryArrayは新しいdiary
+//        }
+//        self.PostList.reloadData()
+//    }
     
     func createData() { //ここのViewでDiaryの数だけでLogの配列を生成しよう
         let diaryObjects = realm.objects(Diary.self)
         for diaryObject in diaryObjects{
             let logData =  LogData(diary: diaryObject)
-            dataArray.insert(logData!, at:0)
-            
-            try! realm.write {
-                realm.add(diaryObject, update: true)
+            if diaryArray == nil, let firstDiary = self.realm.objects(Diary.self).first {
+                    try! realm.write {
+                        realm.add(firstDiary, update: true)
+                    }
+            }else{
+            dataArray.append(logData!)
+              }
             }
         }
-       
-    }
 
-    
+    //遷移するときにデータを渡す
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let postDetail = segue.destination as? PostDetailController,
             let logData = sender as? LogData {

@@ -8,20 +8,20 @@
 
 import Foundation
 class WritingData{
-    var scencePhotoName :String!
+    let scencePhotoName :String!
     var scencePhotoPath :String!
     var scencePhotoURL : URL?
     var scencePhotoData : Data?
     
-    var syuinPhotoName :String!
+    let syuinPhotoName :String!
     var syuinPhotoPath :String!
     var syuinPhotoURL : URL?
     var syuinPhotoData : Data?
     
-   var kujiPhotoName :String!
-   var kujiPhotoPath :String!
-   var kujiPhotoURL : URL?
-   var kujiPhotoData : Data?
+    let kujiPhotoName :String!
+    var kujiPhotoPath :String!
+    var kujiPhotoURL : URL?
+    var kujiPhotoData : Data?
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -29,73 +29,43 @@ class WritingData{
         return documentsDirectory
     }
     
-    func initPath()->String{
-        //画像保存パスを設定
-        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/UserPhoto"
+    func initPath(id:Int)->String{
+        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/" + "\(id)"
         //=> /var/mobile/Containers/Data/Application/XXXXX-XXXX-XXXX-XXXXXX/Library/Caches/UserPhoto
-        do {
-        // ディレクトリが存在するかどうかの判定
-        if !FileManager.default.fileExists(atPath: path) {
-        // ディレクトリが無い場合ディレクトリを作成する
-        try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false , attributes: nil)
-        }
         
+        do {
+            
+            // ディレクトリが存在するかどうかの判定
+            if !FileManager.default.fileExists(atPath: path) {
+                
+                // ディレクトリが無い場合ディレクトリを作成する
+                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false , attributes: nil)
+            }
+            
         } catch {
-        // エラー処理
+            // エラー処理
         }
         return path
     }
     
- 
-
-    
-    init(){//なんでここでinit?
-    //let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    //scencePhotoName = "/Scence.png"
-    scencePhotoPath = "\(String(describing: path)) + \(scencePhotoName!)"
-        //FileManager.default.documentPath(fileName: scencePhotoName)
-    scencePhotoURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(scencePhotoName)")
-    //scencePhotoData = try? Data(contentsOf: scencePhotoURL!)
-        
-    //syuinPhotoName = "/Syuin.png"
-    syuinPhotoPath = "\(String(describing: path)) + \(syuinPhotoName!)"
-    syuinPhotoURL  = URL(string: syuinPhotoPath)
-    //syuinPhotoData = try? Data(contentsOf: syuinPhotoURL!)
-        
-    
-    //kujiPhotoName = "/Kuji.png"
-    kujiPhotoPath = "\(String(describing: path)) + \(kujiPhotoName!)"
-    kujiPhotoURL  = URL(string: syuinPhotoPath)
-    //kujiPhotoData = try? Data(contentsOf: syuinPhotoURL!)
-    }
-    
-    func getscencePhotoName(id:Int) -> String{
-        scencePhotoName = "\(id)" + "/Scence.png"
-        return scencePhotoName
-    }
-    
-    func getsyuinPhotoName(id:Int)  -> String{
+    init?(){//なんでここでinit?
+        scencePhotoName = "/Scence.png"
         syuinPhotoName = "/Syuin.png"
-        return syuinPhotoName
-    }
-    
-    func getkujiPhotoName(id:Int) -> String{
         kujiPhotoName = "/Kuji.png"
-        return kujiPhotoName
     }
     
-    func getImagePath(photoname:String!) ->String{
-        guard let path = path, let photoname = photoname else {return ""}
-        let imagePath = "\(path)” + ”\(photoname)"
+    func getImagePath(path:String!,photoname:String!) ->String{
+        guard let path = path,let photoname = photoname else {return ""}
+        let imagePath = "\(path)+\(photoname)"
         return imagePath
     }
     
     func getImageURL(photoname:String) ->URL{
         let photoURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(photoname)")
         return photoURL
-    }
+    }//tmpだからだめ
     
-    func saveImage(data:Data, photoURL:URL) -> Void {
-        try? data.write(to: photoURL)
-    }
+    func saveImage(path:String,imagedata:Data){
+        FileManager.default.createFile(atPath:path, contents: imagedata, attributes: nil)
+    }//これもダメ、方法file.manager.default.creatを使おう。writingControllerで使う例:func saveImage(path:syuinPhotoPath, imagedata:savesyuinFile)
 }
