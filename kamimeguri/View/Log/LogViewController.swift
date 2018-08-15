@@ -20,7 +20,7 @@ class LogViewController:  UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        createData()
+        dataArray = createData()
         //updateList()
         self.PostList.reloadData()
     }
@@ -38,42 +38,18 @@ class LogViewController:  UIViewController {
 //        super.init()
 //    }
     func getAllList() -> Results<Diary> {
-        let diarys:Results<Diary> = realm.objects(Diary.self)
-        return diarys
+        let diaries: Results<Diary> = realm.objects(Diary.self)
+        return diaries
     }
 
-//    func updateList() {
-//        if self.realm.objects(Diary.self).count == 0 {
-//
-//            let list = Diary()
-////            list.id = "000001"
-////            list.text = "lista de prueba"
-//
-//            // Add to the Realm inside a transaction
-//            try! self.realm.write {
-//                self.realm.add(list)
-//            }
-//
-//        }
-//        if diaryArray == nil, let firstDiary = self.realm.objects(Diary.self).first {
-//            dataArray = list //diaryArrayは新しいdiary
-//        }
-//        self.PostList.reloadData()
-//    }
-    
-    func createData() { //ここのViewでDiaryの数だけでLogの配列を生成しよう
-        let diaryObjects = realm.objects(Diary.self)
-        for diaryObject in diaryObjects{
-            let logData =  LogData(diary: diaryObject)
-            if diaryArray == nil, let firstDiary = self.realm.objects(Diary.self).first {
-                    try! realm.write {
-                        realm.add(firstDiary, update: true)
-                    }
-            }else{
-            dataArray.append(logData!)
-              }
+    func createData() ->[LogData]{ //ここのViewでDiaryの数だけでLogの配列を生成しよう
+         diaryArray = realm.objects(Diary.self)
+        for diaryObject in diaryArray!{
+            guard let logData =  LogData(diary: diaryObject) else {return[]}
+            dataArray.append(logData)
+                }
+            return dataArray
             }
-        }
 
     //遷移するときにデータを渡す
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -94,6 +70,7 @@ extension LogViewController: UITableViewDataSource {
     //cell表示
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //cellを取得
+        print(dataArray.count)
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell {
             let logData = dataArray[indexPath.row]
             cell.logData = logData

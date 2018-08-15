@@ -79,47 +79,52 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         } catch {
             NSLog("One or more of the map styles failed to load. \(error)")
         }
-        
         //------------------地図を表示  end----------------------------------
         
+        
+        
         //------------------通信、hotokami databaseとつなぐ
-        let myUrl = URL(string: "http://192.168.3.13/kamimeguriServer/kamimeguriMap.php");
-        
-        var request = URLRequest(url:myUrl!)
-        request.httpMethod = "POST"// Compose a query string
-        let postString = "$latitudeNow=\(latitudeNow);$longtitudeNow=\(longtitudeNow);";
-        request.httpBody = postString.data(using: String.Encoding.utf8);
-        
-        let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
-            
-            if error != nil
-            {
-                print("error=\(String(describing: error))")
-                return
-            }
-            
-            // You can print out response object
-            print("response = \(String(describing: response))")
-            
-            //Let's convert response sent from a server side script to a NSDictionary object:
-            
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+        func takeWhereNow(latitudeNow:Double,longtitudeNow:Double){
+            let myUrl = URL(string: "http://192.168.3.8/kamimeguriServer/kamimeguriMap.php");
+            var request = URLRequest(url:myUrl!)
+            request.httpMethod = "POST"// Compose a query string
+            let postString = "$latitudeNow=\(latitudeNow);$longtitudeNow=\(longtitudeNow);";
+            request.httpBody = postString.data(using: String.Encoding.utf8);
+            let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
                 
-                if let parseJSON = json {
-                    print(parseJSON)
-//                    let name: NSArray = NSArray(array: dictionary["name"] as! NSArray)
-//                    NSLog("tanaka = \(name[0]), Suzuki = \(name[1]), Sato = \(name[2])")
-                    self.templeName = (parseJSON["templeNameNow[0]"] as? String)!
-                    self.templeAddress = (parseJSON["templeAddressNow[0]"] as? String)!
-                    print("今ここにいるよ: \(self.templeName)")
-                    print("住所はここよ: \(self.templeAddress)")
+                if error != nil
+                {
+                    print("error=\(String(describing: error))")
+                    return
                 }
-            } catch {
-                print(error)
+                
+                // You can print out response object
+                print("response = \(String(describing: response))")
+                
+                //Let's convert response sent from a server side script to a NSDictionary object:
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                    
+                    if let parseJSON = json {
+                        print(parseJSON)
+                        //                    let name: NSArray = NSArray(array: dictionary["name"] as! NSArray)
+                        //                    NSLog("tanaka = \(name[0]), Suzuki = \(name[1]), Sato = \(name[2])")
+                        self.templeName = (parseJSON["templeNameNow[0]"] as? String)!
+                        self.templeAddress = (parseJSON["templeAddressNow[0]"] as? String)!
+                        print("今ここにいるよ: \(self.templeName)")
+                        print("住所はここよ: \(self.templeAddress)")
+                    }
+                } catch {
+                    print(error)
+                }
             }
+            task.resume()
+            
+            print("\(latitudeNow)")
+            print("\(longtitudeNow)")
         }
-        task.resume()
+
         
         //------------------日付などのラベル   start----------------------------------
         infoView.layer.cornerRadius = 20
@@ -169,10 +174,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         marker.isFlat = true
         marker.map = myMapView
         myMapView.selectedMarker = marker
-        
-        
-        
-      
         //location
         self.locationManager.stopUpdatingLocation()//??調べる
     }

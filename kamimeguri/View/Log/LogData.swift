@@ -34,22 +34,7 @@ class LogData { //データを受け入れるお皿です,どんな値を入れ�
         return postYear + postDate
     }
     
-//
-//  func findImage(imageName:String) -> UIImage? {
-//            let fileManager = FileManager.default
-//            let imagePath = (self.getDirectoryPath() as NSString).appendingPathComponent(imageName)
-//            if fileManager.fileExists(atPath: imagePath){
-//                return UIImage(contentsOfFile: imagePath)
-//            }
-//            return nil
-//        }
-//
-//    private func getDirectoryPath() -> String {
-//        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-//        let documentsDirectory = paths[0]
-//        return documentsDirectory
-//    }
-     let fileManager = FileManager.default
+    let fileManager = FileManager.default
     init?(diary:Diary) {//なんでここでinit?
         id = diary.id
         //path -> data
