@@ -49,7 +49,7 @@ class LogData { //データを受け入れるお皿です,どんな値を入れ�
 //        let documentsDirectory = paths[0]
 //        return documentsDirectory
 //    }
-     let fileManager = FileManager.default
+    let fileManager = FileManager.default
     init?(diary:Diary) {//なんでここでinit?
         id = diary.id
         //path -> data

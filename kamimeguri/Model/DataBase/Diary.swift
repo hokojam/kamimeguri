@@ -10,7 +10,7 @@ import RealmSwift
 
 class Diary: Object{
     //let logData = List<LogData>()
-    @objc dynamic var id: Int = 0
+    @objc dynamic var id: Int = 1
     @objc dynamic var postTempleName : String = ""
     @objc dynamic var postTempleAddress : String = ""
     @objc dynamic var date : String = ""
