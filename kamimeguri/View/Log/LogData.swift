@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class LogData { //データを受け入れるお皿です,どんな値を入れるか、渡すか細かく設定する
+class LogData{ //データを受け入れるお皿です,どんな値を入れるか、渡すか細かく設定する
     let realm = try! Realm()
     
     var id: Int?
@@ -35,16 +35,16 @@ class LogData { //データを受け入れるお皿です,どんな値を入れ�
     }
     
     let fileManager = FileManager.default
-    init?(diary:Diary) {//なんでここでinit?
+    init(diary:Diary) {//なんでここでinit?
         id = diary.id
-        //path -> data
+
         //風景写真
        
         if let scencePhotoPath = diary.scencePhotoPath{
             if fileManager.fileExists(atPath: scencePhotoPath){
                self.scencePhoto = UIImage(contentsOfFile: scencePhotoPath)
             }else{
-                return nil
+                return
             }
         }
         //御朱印写真
@@ -52,15 +52,16 @@ class LogData { //データを受け入れるお皿です,どんな値を入れ�
             if fileManager.fileExists(atPath: syuinPhotoPath){
             self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
             }else{
-                return nil
+                return
             }
         }
         //くじ写真
         if let syuinPhotoPath = diary.syuinPhotoPath{
             if fileManager.fileExists(atPath: syuinPhotoPath){
+                //let image = UIImage(contentsOfFile: path)
                 self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
             }else{
-                return nil
+                return
             }
         }
         
@@ -81,8 +82,13 @@ class LogData { //データを受け入れるお皿です,どんな値を入れ�
         }
         postTempleName = diary.postTempleName
         postTempleAddress = diary.postTempleAddress
-        
     }
-
+//    func loadImageFromPath(path: String) -> UIImage? {
+//    let image = UIImage(contentsOfFile: path)
+//    if image == nil {
+//    print("missing image at: \(path)")
+//    }
+//    return image
+//    }
     
 }

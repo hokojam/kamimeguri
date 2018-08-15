@@ -11,8 +11,8 @@ import RealmSwift
 
 class LogViewController:  UIViewController {
     let realm = try! Realm()
-    var diaryArray: Results<Diary>?
-    private var dataArray: [LogData] = []
+    var diaryResult: Results<Diary>!
+    private var logArray = [LogData]()
     
     // カメラかlibraryで撮るものを保存、取得
     @IBOutlet weak var WrittingBtn: UIButton!
@@ -20,71 +20,65 @@ class LogViewController:  UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        dataArray = createData()
+        createData()
         //updateList()
-        self.PostList.reloadData()
+        //self.PostList.reloadData()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-
-//    private let log = Logger(logPlace: DiaryRepository.self)
-//    private var realm = try! Realm()
-//    private let fileManager = FileManager.default
-//    private let imageManager = ImageFileManager.sharedInstance
-//
-//    private override init() {
-//        super.init()
-//    }
-    func getAllList() -> Results<Diary> {
-        let diaries: Results<Diary> = realm.objects(Diary.self)
-        return diaries
-    }
-
-    func createData() ->[LogData]{ //ここのViewでDiaryの数だけでLogの配列を生成しよう
-         diaryArray = realm.objects(Diary.self)
-        for diaryObject in diaryArray!{
-            guard let logData =  LogData(diary: diaryObject) else {return[]}
-            dataArray.append(logData)
-                }
-            return dataArray
-            }
-
-    //遷移するときにデータを渡す
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let postDetail = segue.destination as? PostDetailController,
-            let logData = sender as? LogData {
-            postDetail.logData = logData
+        
+        func loadItems(){
+            diaryResult = realm.objects(Diary.self)
+            self.PostList.reloadData()
         }
-    }
-}
-
-extension LogViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let diaryObjects = realm.objects(Diary.self)
-        return diaryObjects.count //if nil return 1 : nil Coalescing Operator! important to make the app safer coz it wont crash eventhough nil
-    }
-    
-    //cell表示
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //cellを取得
-        print(dataArray.count)
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell {
-            let logData = dataArray[indexPath.row]
-            cell.logData = logData
-            return cell
-        }
-        return UITableViewCell()
-    }
-}
-
-extension LogViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){//segueの名前は遷移を実行するものの名前
-        let logData = dataArray[indexPath.row]
-        performSegue(withIdentifier: "ToPostDetail", sender: logData)
         
     }
+    func createData(){
+        diaryResult = realm.objects(Diary.self)
+        //let diaryObjects = realm.objects(Diary.self)
+        for diaryObject in diaryResult {
+            let logData = LogData(diary: diaryObject)
+            logArray.insert(logData,at:0)
+            //logArray.append(logData)
+           }
+        }
+        
+        //遷移するときにデータを渡す
+        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if let postDetail = segue.destination as? PostDetailController,
+                let logData = sender as? LogData {
+                postDetail.logData = logData
+            }
+        }
+    }
+    
+    extension LogViewController: UITableViewDataSource {
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            //diaryObjects = realm.objects(Diary.self)
+            return diaryResult?.count ?? 0//if nil return 1 : nil Coalescing Operator! important to make the app safer coz it wont crash eventhough nil
+        }
+        
+        //cell表示
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            //cellを取得
+            //print(diaryResult.count)
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell {
+                
+                //let logData = logArray[indexPath.row]
+                let logData = logArray [indexPath.row]
+                cell.logData = logData
+                return cell
+            }
+            return UITableViewCell()
+        }
+    }
+    //logArray.count
+    extension LogViewController: UITableViewDelegate {
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){//segueの名前は遷移を実行するものの名前
+            let logData = logArray[indexPath.row]
+            performSegue(withIdentifier: "ToPostDetail", sender: logData)  
+        }
 }
 

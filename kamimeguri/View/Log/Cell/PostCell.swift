@@ -20,7 +20,7 @@ class PostCell: UITableViewCell {
     @IBOutlet private weak var imageList: UIStackView!
     
     @IBOutlet private var postImages: [UIImageView]!
-    
+    //loadImageFromPath(imagePath)
     var logData: LogData? {
         didSet {
             if let logData = logData {

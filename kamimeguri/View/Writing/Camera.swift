@@ -70,9 +70,8 @@ extension CameraHandler: UIImagePickerControllerDelegate,UINavigationControllerD
         }
         if let imageUrl = info[UIImagePickerControllerMediaURL] as? URL{
             self.imagePickedURL = imageUrl
-            
         }else{
-            print("Something went wrong in  video")
+            print("Something went wrong in URL")
         }
         currentVC.dismiss(animated:true, completion:nil)
      }

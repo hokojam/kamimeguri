@@ -19,7 +19,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
 {
     //データに関連する変数
     let realm = try! Realm()
-    var diaryArray: Results<Diary>!//!がないと、Class 'WritingViewController' has no initializers
+    var diaryResult: Results<Diary>!//!がないと、Class 'WritingViewController' has no initializers
     private let fileManager = FileManager.default
     var writingData = WritingData()
     var nowpostDate = UILabel()
@@ -78,7 +78,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         DiaryText.placeholder = "お参りの気持ちはどうですか?"
         DiaryText.delegate = self
         
@@ -98,7 +98,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
                                  selector: #selector(WritingViewController.keyboardDidChange(notification:)),//なんでnotification: を追加しの？？？
             name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-       
+        
     }
     
     
@@ -142,10 +142,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
         }
     }
     
-    class SaveImgName{
-        var imageName : String?
-    }
-    
     @IBAction func MikujiBtnTapped(_ sender: UIButton) {
         //CameraHandler.shared.imageData
         CameraHandler.shared.showActionSheet(vc: self)
@@ -165,7 +161,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
         newDiary.DiaryText = DiaryText.text
         newDiary.postTempleName = TempleName.text!
         newDiary.postTempleAddress = TempleAddress.text!
-        
         
         let postDateFormatter =  DateFormatter()
         postDateFormatter.setTemplate(.fullDate)
@@ -191,69 +186,80 @@ class WritingViewController: UIViewController, UITextViewDelegate
     
     
     func saveItems(diary: Diary){
-            try! realm.write{
-             var latestId = getDiaryId()
-             
-                //idが生成されるたびに、新しいid用のdirectoryを生成する
-                let photoSavePath = writingData?.initPath(id:latestId)
-
-                //境内画像
-                if let ScenceImgSavetoFile = UIImagePNGRepresentation(self.ScenceImg.image!)
-                  {
-                    //画像のpathを作る
-                    let newScencePhotoPath = writingData?.getImagePath(path: photoSavePath, photoname: writingData?.scencePhotoName)
-                    writingData?.saveImage(path:(newScencePhotoPath)!,imagedata:ScenceImgSavetoFile)//どう書き出すか考えよう
-                    //PathをRealmに保存
-                    diary.scencePhotoPath = newScencePhotoPath
-                }else{
-                    print ("画像がないですよ")
-                }
-    
-                //おみくじの画像
-                if let KujiImgSavetoFile = UIImagePNGRepresentation(self.KujiImage.image!)
-                   {
-                    let newKujiPhotoPath = writingData?.getImagePath(path: photoSavePath, photoname: writingData?.kujiPhotoName)
-                    writingData?.saveImage(path:(newKujiPhotoPath)!,imagedata:KujiImgSavetoFile)
-                    //PathをRealmに保存
-                    diary.scencePhotoPath = newKujiPhotoPath
-                }else{
-                    print ("画像がないですよ")
-                }
-              
-                
-                if let SyuinImgSavetoFile = UIImagePNGRepresentation(self.SyuinImage.image!)
-                    //,!FileManager.default.fileExists(atPath: writingData.syuinPhotoPath)
-                {
-                    //画像のパスを作る
-                    let newSyuinPhotoPath = writingData?.getImagePath(path: photoSavePath, photoname: writingData?.syuinPhotoName)
-                    writingData?.saveImage(path:(newSyuinPhotoPath)!,imagedata:SyuinImgSavetoFile)
-                    //PathをRealmに保存
-                    diary.syuinPhotoPath = newSyuinPhotoPath
-                }else{
-                    print ("画像がないですよ")
-                }
-                //realm.deleteAll() //テスト用。データベースをクリア
-                realm.add(diary, update: true)
+        func getDiaryId() -> Int {
+            var latestId = 1
+            if (false == realm.isEmpty) {
+                latestId = (realm.objects(Diary.self).max(ofProperty: "id") as Int?)!//.max(ofProperty: "id")がわかりません
+                latestId += 1
+                diary.id = latestId
+            }  else if (true == realm.isEmpty) {
+                diary.id = latestId
             }
-            
-            func getDiaryId() -> Int {
-                var latestId = 1
-                if (false == realm.isEmpty) {
-                    latestId = (realm.objects(Diary.self).max(ofProperty: "id") as Int?)!//.max(ofProperty: "id")がわかりません
-                    latestId += 1
-                    diary.id = latestId
-                }  else if (true == realm.isEmpty) {
-                    diary.id = latestId
-                }
-                return latestId
-            }
-            
+            return latestId
         }
+        let latestId = getDiaryId()
+        //idが生成されるたびに、新しいid用のdirectoryを生成する
+        let photoSavePath = writingData.initPath(id:latestId)
+        //境内画像
+        func SaveScenceFile(){
+           guard let scenceImage = self.ScenceImg.image else{
+            print("写真ないよ")
+            return
+            }
+           let ScenceImgSavetoFile = UIImagePNGRepresentation(scenceImage)
+                //画像のpathを作る
+            let newScencePhotoPath = writingData.getImagePath(path: photoSavePath, photoname: writingData.scencePhotoName)
+//            func saveImage(path:String,imagedata:Data){
+//                FileManager.default.createFile(atPath:path, contents: imagedata, attributes: nil)
+//            }
+            writingData.saveImage(path:(newScencePhotoPath),imagedata:ScenceImgSavetoFile!)//どう書き出すか考えよう
+                //PathをRealmに保存
+                diary.scencePhotoPath = newScencePhotoPath
+          
+        }
+           
         
+        //おみくじの画像
+        func SaveKujiFile(){
+            guard let kujiImage = self.KujiImage.image else{
+                print("写真ないよ")
+                return}
+            let KujiImgSavetoFile = UIImagePNGRepresentation(kujiImage)
+            let newKujiPhotoPath = writingData.getImagePath(path: photoSavePath, photoname: writingData.kujiPhotoName)
+            writingData.saveImage(path:(newKujiPhotoPath),imagedata:KujiImgSavetoFile!)
+            //PathをRealmに保存
+            diary.kujiPhotoPath = newKujiPhotoPath
+        }
 
+        
+        func SaveSyuinFile(){
+            guard let syuinImage = self.SyuinImage.image else{
+                print("写真ないよ")
+                return
+            }
+            let SyuinImgSavetoFile = UIImagePNGRepresentation(syuinImage)
+            let newSyuinPhotoPath = writingData.getImagePath(path: photoSavePath, photoname: writingData.syuinPhotoName)
+            writingData.saveImage(path:(newSyuinPhotoPath),imagedata:SyuinImgSavetoFile!)
+            diary.syuinPhotoPath = newSyuinPhotoPath
+        }
+     
+        
+        SaveScenceFile()
+        SaveKujiFile()
+        SaveSyuinFile()
+        
+        try! realm.write{
+            realm.add(diary, update: true)
+             //realm.deleteAll() //テスト用。データベースをクリア
+        }
+        let diaryObjects = realm.objects(Diary.self)
+        print (diaryObjects.count)
+    }
+    
+    
     func loadItems(){
-        diaryArray = realm.objects(Diary.self)
-        LogViewController().PostList.reloadData()
+        diaryResult = realm.objects(Diary.self)
+        //LogViewController().PostList.reloadData()
     }
 }
 

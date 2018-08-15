@@ -30,7 +30,7 @@ class WritingData{
     }
     
     func initPath(id:Int)->String{
-        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/" + "\(id)"
+        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/\(id)"
         //=> /var/mobile/Containers/Data/Application/XXXXX-XXXX-XXXX-XXXXXX/Library/Caches/UserPhoto
         
         do {
@@ -48,7 +48,7 @@ class WritingData{
         return path
     }
     
-    init?(){//なんでここでinit?
+    init(){//なんでここでinit?
         scencePhotoName = "/Scence.png"
         syuinPhotoName = "/Syuin.png"
         kujiPhotoName = "/Kuji.png"
@@ -56,7 +56,7 @@ class WritingData{
     
     func getImagePath(path:String!,photoname:String!) ->String{
         guard let path = path,let photoname = photoname else {return ""}
-        let imagePath = "\(path)+\(photoname)"
+        let imagePath = "\(path)\(photoname)"
         return imagePath
     }
     

@@ -167,8 +167,9 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         latitudeNow = manager.location!.coordinate.latitude
         longtitudeNow = manager.location!.coordinate.latitude
         
-        marker.title = self.templeName
-        marker.snippet = self.templeAddress
+        marker.title = "東京大神宮" //self.templeName
+        marker.snippet = "東京都千代田区富士見２丁目４−１"//self.templeAddress
+        
         //marker.appearAnimation = kGMSMarkerAnimationPop
         marker.icon = UIImage(named: "mapMarker_shrine")//
         marker.isFlat = true
