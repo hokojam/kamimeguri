@@ -84,7 +84,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         
         
         //------------------通信、hotokami databaseとつなぐ
-        func takeWhereNow(latitudeNow:Double,longtitudeNow:Double){
             let myUrl = URL(string: "http://192.168.3.8/kamimeguriServer/kamimeguriMap.php");
             var request = URLRequest(url:myUrl!)
             request.httpMethod = "POST"// Compose a query string
@@ -123,7 +122,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
             
             print("\(latitudeNow)")
             print("\(longtitudeNow)")
-        }
 
         
         //------------------日付などのラベル   start----------------------------------

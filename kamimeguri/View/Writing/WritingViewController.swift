@@ -200,6 +200,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
         let latestId = getDiaryId()
         //idが生成されるたびに、新しいid用のdirectoryを生成する
         let photoSavePath = writingData.initPath(id:latestId)
+        
         //境内画像
         func SaveScenceFile(){
            guard let scenceImage = self.ScenceImg.image else{
@@ -231,7 +232,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
             diary.kujiPhotoPath = newKujiPhotoPath
         }
 
-        
+        //御朱印画像
         func SaveSyuinFile(){
             guard let syuinImage = self.SyuinImage.image else{
                 print("写真ないよ")
@@ -248,15 +249,68 @@ class WritingViewController: UIViewController, UITextViewDelegate
         SaveScenceFile()
         SaveKujiFile()
         SaveSyuinFile()
-        
+        do{
         try! realm.write{
             realm.add(diary, update: true)
              //realm.deleteAll() //テスト用。データベースをクリア
+            }
+//            let title = "アラートテスト"
+//            let message = "タップしてくれてサンクス."
+//            let okText = "ok"
+//
+//            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+//            let okayButton = UIAlertAction(title: okText, style: UIAlertActionStyle.cancel, handler: nil)
+//            alert.addAction(okayButton)
+//
+//            present(alert, animated: true, completion: nil)
+            
+        let alert: UIAlertController = UIAlertController(title: "記録成功！", message: "これからどうしますか？", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        let toLogAction: UIAlertAction = UIAlertAction(title: "記録を見る", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            let storyboard: UIStoryboard = UIStoryboard(name: "SecondViewController", bundle: Bundle.main)
+            let logViewController: LogViewController = storyboard.instantiateInitialViewController() as! LogViewController
+                self.navigationController?.pushViewController(logViewController, animated: true)
+        })
+        // キャンセルボタン
+        let cancelAction: UIAlertAction = UIAlertAction(title: "引き続き記録する", style: UIAlertActionStyle.cancel, handler:nil
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            //            {(action: UIAlertAction!) -> Void in
+            //            print("Cancel")}
+       )
+        
+        // ③ UIAlertControllerにActionを追加
+        alert.addAction(cancelAction)
+        alert.addAction(toLogAction)
+        // ④ Alertを表示
+        present(alert, animated: true, completion: nil)
         }
-        let diaryObjects = realm.objects(Diary.self)
-        print (diaryObjects.count)
+            
+    catch{
+        let alert: UIAlertController = UIAlertController(title: "記録成功！", message: "これからどうしますか？", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        let defaultAction: UIAlertAction = UIAlertAction(title: "記録を見る", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            let storyboard: UIStoryboard = UIStoryboard(name: "LogViewController", bundle: Bundle.main)
+            let logViewController: LogViewController = storyboard.instantiateInitialViewController() as! LogViewController
+            self.navigationController?.pushViewController(logViewController, animated: true)
+        })
+        // キャンセルボタン
+        let cancelAction: UIAlertAction = UIAlertAction(title: "もう一回記録する", style: UIAlertActionStyle.cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("Cancel")
+        })
+        
+        // ③ UIAlertControllerにActionを追加
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        // ④ Alertを表示
+        present(alert, animated: true, completion: nil)
+       }
     }
-    
     
     func loadItems(){
         diaryResult = realm.objects(Diary.self)

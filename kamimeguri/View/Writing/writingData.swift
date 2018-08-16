@@ -29,21 +29,13 @@ class WritingData{
         return documentsDirectory
     }
     
-//    // DocumentファイルPath文字列を取得
-//    var documentPath: String {
-//        //=> "/var/mobile/Containers/Data/Application/XXXX-XXXX-XXXX-XXXX-XXXX/Documents"
-//        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-//    }
-//    NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
     func initPath(id:Int)->String{
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/\(id)"
         //=> /var/mobile/Containers/Data/Application/XXXXX-XXXX-XXXX-XXXXXX/Library/Caches/UserPhoto
         
         do {
-            
             // ディレクトリが存在するかどうかの判定
             if !FileManager.default.fileExists(atPath: path) {
-                
                 // ディレクトリが無い場合ディレクトリを作成する
                 try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false , attributes: nil)
             }
@@ -73,5 +65,5 @@ class WritingData{
     
     func saveImage(path:String,imagedata:Data){
         FileManager.default.createFile(atPath:path, contents: imagedata, attributes: nil)
-    }//これもダメ、方法file.manager.default.creatを使おう。writingControllerで使う例:func saveImage(path:syuinPhotoPath, imagedata:savesyuinFile)
+    }
 }
