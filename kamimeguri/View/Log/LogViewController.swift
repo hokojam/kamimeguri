@@ -22,7 +22,7 @@ class LogViewController:  UIViewController {
         super.viewWillAppear(animated)
         createData()
         //updateList()
-        //self.PostList.reloadData()
+        self.PostList.reloadData()
     }
     
     override func viewDidLoad() {
@@ -64,7 +64,6 @@ class LogViewController:  UIViewController {
             //cellを取得
             //print(diaryResult.count)
             if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell {
-                
                 //let logData = logArray[indexPath.row]
                 let logData = logArray [indexPath.row]
                 cell.logData = logData

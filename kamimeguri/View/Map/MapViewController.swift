@@ -84,6 +84,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
         
         
         //------------------通信、hotokami databaseとつなぐ
+
             let myUrl = URL(string: "http://192.168.3.8/kamimeguriServer/kamimeguriMap.php");
             var request = URLRequest(url:myUrl!)
             request.httpMethod = "POST"// Compose a query string
@@ -122,7 +123,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
             
             print("\(latitudeNow)")
             print("\(longtitudeNow)")
-
         
         //------------------日付などのラベル   start----------------------------------
         infoView.layer.cornerRadius = 20
