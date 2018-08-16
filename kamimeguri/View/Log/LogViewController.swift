@@ -43,7 +43,6 @@ class LogViewController:  UIViewController {
             //logArray.append(logData)
            }
         }
-        
         //遷移するときにデータを渡す
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             if let postDetail = segue.destination as? PostDetailController,
