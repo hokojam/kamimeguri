@@ -241,6 +241,7 @@ class WritingViewController: UIViewController, UITextViewDelegate
             let newSyuinPhotoPath = writingData.getImagePath(path: photoSavePath, photoname: writingData.syuinPhotoName)
             writingData.saveImage(path:(newSyuinPhotoPath),imagedata:SyuinImgSavetoFile!)
             diary.syuinPhotoPath = newSyuinPhotoPath
+            print(newSyuinPhotoPath)
         }
      
         

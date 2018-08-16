@@ -41,27 +41,26 @@ class LogData{ //データを受け入れるお皿です,どんな値を入れ�
         //風景写真
        
         if let scencePhotoPath = diary.scencePhotoPath{
-            if fileManager.fileExists(atPath: scencePhotoPath){
-               self.scencePhoto = UIImage(contentsOfFile: scencePhotoPath)
+            if fileManager.fileExists(atPath: "\(scencePhotoPath)"){
+             self.scencePhoto = UIImage(contentsOfFile: scencePhotoPath)
             }else{
-                return
+                self.syuinPhoto = UIImage(named: "location")
             }
         }
         //御朱印写真
+//        if let syuinPhotoPath = diary.syuinPhotoPath{
+//         self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
+//        }
         if let syuinPhotoPath = diary.syuinPhotoPath{
-            if fileManager.fileExists(atPath: syuinPhotoPath){
-            self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
-            }else{
-                return
-            }
+                self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
         }
         //くじ写真
-        if let syuinPhotoPath = diary.syuinPhotoPath{
-            if fileManager.fileExists(atPath: syuinPhotoPath){
-                //let image = UIImage(contentsOfFile: path)
-                self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
+        if let kujiPhotoPath = diary.kujiPhotoPath{
+            if fileManager.fileExists(atPath: kujiPhotoPath){
+             self.kujiPhoto = UIImage(contentsOfFile: kujiPhotoPath)
             }else{
-                return
+                self.kujiPhoto = UIImage(named: "location")
+                print(kujiPhotoPath)
             }
         }
         

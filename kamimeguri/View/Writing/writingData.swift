@@ -29,8 +29,14 @@ class WritingData{
         return documentsDirectory
     }
     
+//    // DocumentファイルPath文字列を取得
+//    var documentPath: String {
+//        //=> "/var/mobile/Containers/Data/Application/XXXX-XXXX-XXXX-XXXX-XXXX/Documents"
+//        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+//    }
+//    NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
     func initPath(id:Int)->String{
-        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first! + "/\(id)"
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! + "/\(id)"
         //=> /var/mobile/Containers/Data/Application/XXXXX-XXXX-XXXX-XXXXXX/Library/Caches/UserPhoto
         
         do {
