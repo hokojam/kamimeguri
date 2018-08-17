@@ -245,25 +245,14 @@ class WritingViewController: UIViewController, UITextViewDelegate
             print(newSyuinPhotoPath)
         }
      
-        
         SaveScenceFile()
         SaveKujiFile()
         SaveSyuinFile()
         do{
-        try! realm.write{
+            try? realm.write{
             realm.add(diary, update: true)
              //realm.deleteAll() //テスト用。データベースをクリア
             }
-//            let title = "アラートテスト"
-//            let message = "タップしてくれてサンクス."
-//            let okText = "ok"
-//
-//            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-//            let okayButton = UIAlertAction(title: okText, style: UIAlertActionStyle.cancel, handler: nil)
-//            alert.addAction(okayButton)
-//
-//            present(alert, animated: true, completion: nil)
-            
         let alert: UIAlertController = UIAlertController(title: "記録成功！", message: "これからどうしますか？", preferredStyle:  UIAlertControllerStyle.alert)
         
         let toLogAction: UIAlertAction = UIAlertAction(title: "記録を見る", style: UIAlertActionStyle.default, handler:{
@@ -275,9 +264,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
         })
         // キャンセルボタン
         let cancelAction: UIAlertAction = UIAlertAction(title: "引き続き記録する", style: UIAlertActionStyle.cancel, handler:nil
-            // ボタンが押された時の処理を書く（クロージャ実装）
-            //            {(action: UIAlertAction!) -> Void in
-            //            print("Cancel")}
        )
         
         // ③ UIAlertControllerにActionを追加
@@ -286,7 +272,6 @@ class WritingViewController: UIViewController, UITextViewDelegate
         // ④ Alertを表示
         present(alert, animated: true, completion: nil)
         }
-            
     catch{
         let alert: UIAlertController = UIAlertController(title: "記録成功！", message: "これからどうしますか？", preferredStyle:  UIAlertControllerStyle.alert)
         

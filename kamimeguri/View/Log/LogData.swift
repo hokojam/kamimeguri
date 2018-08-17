@@ -52,9 +52,9 @@ class LogData{ //データを受け入れるお皿です,どんな値を入れ�
 //         self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
 //        }
         if let syuinPhotoPath = diary.syuinPhotoPath{
-                self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
+            self.syuinPhoto = UIImage(contentsOfFile: syuinPhotoPath)
         }
-        //くじ写真
+        //くじ写真diary.kujiPhotoPath
         if let kujiPhotoPath = diary.kujiPhotoPath{
             if fileManager.fileExists(atPath: kujiPhotoPath){
              self.kujiPhoto = UIImage(contentsOfFile: kujiPhotoPath)
